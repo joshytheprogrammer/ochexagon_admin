@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 
-const ReactHookForms = () => {
+const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -55,4 +55,4 @@ const ReactHookForms = () => {
   );
 };
 
-export default ReactHookForms;
+export default LoginForm;
