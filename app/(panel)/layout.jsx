@@ -1,6 +1,6 @@
-const AdminPanelLayout = () => {
+const AdminPanelLayout = ({ children }) => {
   return (
-    <div className="adminPanel"></div>
+    <div className="adminPanel">{children}</div>
   );
 }
  
