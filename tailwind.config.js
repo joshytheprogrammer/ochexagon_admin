@@ -12,6 +12,14 @@ module.exports = {
       'primary-color': '#2C4094',
       'black': '#000000',
       'white': '#ffffff'
+    },
+
+    extend: {
+      screens: {
+        'mo-sm': '350px',
+        'mo-md': '475px',
+        'mo-lg': '576px'
+      }
     }
   },
   plugins: [],
