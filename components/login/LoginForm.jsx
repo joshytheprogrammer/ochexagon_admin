@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 
 const LoginForm = () => {
@@ -15,7 +16,7 @@ const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white w-[60%] flex flex-col items-center rounded-lg px-5 py-9"
+      className="bg-white w-[95%] mo-sm:w-[85%] mo-md:w-[75%] sm:w-[60%] md:w-[50%] lg:w-[45%] xl:w-[25%] flex flex-col items-center rounded-lg px-5 py-9"
     >
       <Image
         src="/assets/logo.svg"
@@ -53,11 +54,7 @@ const LoginForm = () => {
           />
         </div>
 
-        <input
-          type="submit"
-          value="Sign in"
-          className="bg-primary-color text-white font-semibold w-full rounded-[4px] p-2 mt-8"
-        />
+        <Link href="/dashboard" className="bg-primary-color text-white font-semibold text-center w-full block rounded-[4px] p-2 mt-10">Sign in</Link>
       </div>
     </form>
   );
