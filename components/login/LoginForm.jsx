@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 
 const LoginForm = () => {
@@ -13,18 +14,22 @@ const LoginForm = () => {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="bg-white w-[95%] mo-sm:w-[85%] mo-md:w-[75%] sm:w-[60%] md:w-[50%] lg:w-[45%] xl:w-[25%] flex flex-col items-center rounded-lg px-5 py-9"
+    >
       <Image
         src="/assets/logo.svg"
         alt="Company logo"
-        width={109}
-        height={61}
+        className="mb-7"
+        width={60}
+        height={61 / 2}
       />
 
-      <h1>Sign in</h1>
+      <h1 className="text-[25px] font-semibold">Sign in</h1>
 
-      <div>
-        <div>
+      <div className="w-full mt-6 mb-11">
+        <div className="form_field">
           <label htmlFor="">Email</label>
           <input
             type="text"
@@ -40,7 +45,7 @@ const LoginForm = () => {
           {errors.email && <p>{errors.email.message}</p>}
         </div>
 
-        <div>
+        <div className="form_field">
           <label htmlFor="">Password</label>
           <input
             type="password"
@@ -49,7 +54,7 @@ const LoginForm = () => {
           />
         </div>
 
-        <input type="submit" value="Sign in" />
+        <Link href="/dashboard" className="bg-primary-color text-white transition-all ease-linear duration-200 hover:opacity-90 font-semibold text-center w-full block rounded-[4px] p-2 mt-10">Sign in</Link>
       </div>
     </form>
   );
