@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { BiSolidDashboard } from 'react-icons/bi'
 
 const AdminPanelLayout = ({ children }) => {
   return (
@@ -27,14 +28,29 @@ const AdminPanelLayout = ({ children }) => {
         <div>
           <div>
             <div>
-              <Image />
-              <span></span>
+              <BiSolidDashboard />
+              <span>Dashboard</span>
+            </div>
+
+            <div>
+              <BiSolidDashboard />
+              <span>Blog Posts</span>
+            </div>
+
+            <div>
+              <BiSolidDashboard />
+              <span>Testimonials</span>
             </div>
           </div>
-          <div></div>
+
+          <div>
+            <BiSolidDashboard />
+            <span>Log Out</span>
+          </div>
         </div>
       </aside>
-      <main></main>
+      
+      <main>{children}</main>
     </div>
   );
 };
