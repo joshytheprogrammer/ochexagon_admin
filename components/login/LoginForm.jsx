@@ -13,18 +13,22 @@ const LoginForm = () => {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="bg-white w-[60%] flex flex-col items-center rounded-lg px-5 py-9"
+    >
       <Image
         src="/assets/logo.svg"
         alt="Company logo"
-        width={109}
-        height={61}
+        className="mb-7"
+        width={60}
+        height={61 / 2}
       />
 
-      <h1>Sign in</h1>
+      <h1 className="text-[25px] font-semibold">Sign in</h1>
 
-      <div>
-        <div>
+      <div className="w-full mt-6 mb-11">
+        <div className="form_field">
           <label htmlFor="">Email</label>
           <input
             type="text"
@@ -40,7 +44,7 @@ const LoginForm = () => {
           {errors.email && <p>{errors.email.message}</p>}
         </div>
 
-        <div>
+        <div className="form_field">
           <label htmlFor="">Password</label>
           <input
             type="password"
@@ -49,7 +53,11 @@ const LoginForm = () => {
           />
         </div>
 
-        <input type="submit" value="Sign in" />
+        <input
+          type="submit"
+          value="Sign in"
+          className="bg-primary-color text-white font-semibold w-full rounded-[4px] p-2 mt-8"
+        />
       </div>
     </form>
   );
