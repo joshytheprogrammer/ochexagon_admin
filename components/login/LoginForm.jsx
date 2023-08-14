@@ -54,7 +54,7 @@ const LoginForm = () => {
           />
         </div>
 
-        <Link href="/dashboard" className="bg-primary-color text-white font-semibold text-center w-full block rounded-[4px] p-2 mt-10">Sign in</Link>
+        <Link href="/dashboard" className="bg-primary-color text-white transition-all ease-linear duration-200 hover:opacity-90 font-semibold text-center w-full block rounded-[4px] p-2 mt-10">Sign in</Link>
       </div>
     </form>
   );
