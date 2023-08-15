@@ -16,6 +16,7 @@ module.exports = {
 
     extend: {
       screens: {
+        'mo-xs': '0px',
         'mo-sm': '350px',
         'mo-md': '475px',
         'mo-lg': '576px'
