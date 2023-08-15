@@ -19,7 +19,7 @@ const AdminPanelLayout = ({ children }) => {
       <div className="flex flex-grow">
         <SidePanel isOpen={isOpen} setIsOpen={setIsOpen} />
 
-        <main className="flex-grow p-4">
+        <main className="flex-grow p-4 overflow-y-scroll">
           <MenuBtn onClick={openMenu} />
 
           {children}
