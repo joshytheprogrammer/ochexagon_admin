@@ -11,7 +11,8 @@ module.exports = {
       'blueish-white': '#F7F7FB',
       'primary-color': '#2C4094',
       'black': '#000000',
-      'white': '#ffffff'
+      'white': '#ffffff',
+      'transparent-blue': '#EBEDF5'
     },
 
     extend: {

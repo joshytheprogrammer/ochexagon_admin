@@ -28,4 +28,16 @@
   .sidebar-links svg {
     @apply text-[25px] mr-2;
   }
+
+  .scrollable-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollable-content::-webkit-scrollbar-track {
+    @apply bg-gray;
+  }
+
+  .scrollable-content::-webkit-scrollbar-thumb {
+    @apply bg-primary-color rounded-[4px];
+  }
 }

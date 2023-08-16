@@ -10,16 +10,16 @@ const AdminPanelLayout = ({ children }) => {
 
   const openMenu = () => {
     !isOpen && setIsOpen(true);
-  }
+  };
 
   return (
     <div className="adminPanel bg-blueish-white w-full flex flex-col h-screen">
       <Header />
 
-      <div className="flex flex-grow">
+      <div className="flex-1 flex overflow-hidden">
         <SidePanel isOpen={isOpen} setIsOpen={setIsOpen} />
 
-        <main className="flex-grow p-4">
+        <main className="w-[85%] h-full px-12 py-4">
           <MenuBtn onClick={openMenu} />
 
           {children}
