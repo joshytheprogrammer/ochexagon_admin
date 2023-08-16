@@ -12,7 +12,7 @@ module.exports = {
       'primary-color': '#2C4094',
       'black': '#000000',
       'white': '#ffffff',
-      'transparent-blue': 'EBEDF5'
+      'transparent-blue': '#EBEDF5'
     },
 
     extend: {
