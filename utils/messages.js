@@ -9,7 +9,7 @@ const messageSample = {
   time: "20:30"
 };
 
-let count = 10;
+let count = 20;
 let messagesArray = [];
 
 for (let i = 0; i < count; i++) {
