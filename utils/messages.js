@@ -13,7 +13,7 @@ let count = 20;
 let messagesArray = [];
 
 for (let i = 0; i < count; i++) {
-  const duplicateMessage = {...messageSample};
+  const duplicateMessage = {...messageSample, id: i};
   messagesArray.push(duplicateMessage)
 }
 

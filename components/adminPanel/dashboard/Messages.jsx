@@ -1,4 +1,5 @@
 import messagesArray from "@utils/messages";
+import Link from "next/link";
 
 const Messages = () => {
   const messageList = messagesArray;
@@ -16,7 +17,7 @@ const Messages = () => {
   }
   
   return (
-    <div className="bg-white border w-full h-[90%] rounded-lg mt-6 py-4 px-8 first-letter:self-center justify-self-center overflow-hidden flex flex-col">
+    <div className="h-full overflow-hidden flex flex-col">
       <div className="flex flex-row justify-between">
         <span className="bg-primary-color text-white w-fit rounded-full px-5 py-1">20 Messages</span>
         <input type="text" className="bg-gray w-100px rounded-[4px] px-4 py-1" />
@@ -26,19 +27,19 @@ const Messages = () => {
 
       <hr />
 
-      <div className="scrollable-content overflow-y-scroll h-[100%] my-4">
+      <div className="scrollable-content overflow-y-scroll h-[100%] my-4 px-2">
         {messageList.map((message, index) => (
-          <div key={index} className="py-2 hover:bg-transparent-blue hover:border-l-4 border-primary-color px-4 rounded-[4px]">
+          <Link href={`dashboard/messages/${message.id}`} key={index} className="w-full block py-2 hover:bg-transparent-blue hover:border-l-4 border-primary-color px-4 rounded-[4px]">
             <div className="font-bold flex justify-between mb-2 ">
               <h2 className="text-lg">{message.senderName}</h2>
               <span className="text-sm">{message.email}</span>
             </div>
 
             <div className="font-semibold text-sm flex justify-between">
-              <p>{shortenText(message.message, 150)}</p>
+              <p>{shortenText(message.message, 120)}</p>
               <span>{message.time}</span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
