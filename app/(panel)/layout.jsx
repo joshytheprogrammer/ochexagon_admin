@@ -19,7 +19,7 @@ const AdminPanelLayout = ({ children }) => {
       <div className="flex-1 flex overflow-hidden">
         <SidePanel isOpen={isOpen} setIsOpen={setIsOpen} />
 
-        <main className="w-[85%] h-full px-12 py-4">
+        <main className="w-full lg:w-[85%] h-full px-4 mo-lg:px-8 lg:px-12 py-4">
           <MenuBtn onClick={openMenu} />
 
           {children}
