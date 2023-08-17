@@ -28,8 +28,8 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           <Link
             href="/dashboard"
             className={`sidebar-links ${
-              route === "/dashboard" ? "text-primary-color" : "text-white"
-            } ${route === "/dashboard" ? "bg-white" : ""}`}
+              route === "/dashboard" || route.startsWith("/dashboard") ? "text-primary-color" : "text-white"
+            } ${route === "/dashboard" || route.startsWith("/dashboard") ? "bg-white" : ""}`}
           >
             <BiSolidDashboard />
             <span>Dashboard</span>
@@ -37,8 +37,8 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           <Link
             href="/blog"
             className={`sidebar-links ${
-              route === "/blog" ? "text-primary-color" : "text-white"
-            } ${route === "/blog" ? "bg-white" : ""}`}
+              route === "/blog" || route.startsWith("/route") ?  "text-primary-color" : "text-white"
+            } ${route === "/blog" || route.startsWith("/route") ? "bg-white" : ""}`}
           >
             <BiSolidDashboard />
             <span>Blog Posts</span>
@@ -46,8 +46,8 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           <Link
             href="/testimonials"
             className={`sidebar-links ${
-              route === "/testimonials" ? "text-primary-color" : "text-white"
-            } ${route === "/testimonials" ? "bg-white" : ""}`}
+              route === "/testimonials" || route.startsWith("/testimonials") ? "text-primary-color" : "text-white"
+            } ${route === "/testimonials" || route.startsWith("/testimonials") ? "bg-white" : ""}`}
           >
             <BiSolidDashboard />
             <span>Testimonials</span>
