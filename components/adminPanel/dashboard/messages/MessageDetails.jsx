@@ -9,12 +9,16 @@ const MessageDetails = ({ messageData }) => {
             {messageData.senderName + messageData.id}
           </h1>
 
-          <div className="flex flex-row justify-between">
-            <div>{messageData.email}</div>
-            <div>{messageData.time}</div>
+          <div className="text-[20px] flex flex-row justify-between">
+            <div className="font-bold">{messageData.email}</div>
+            <div className="font-semibold">{messageData.time}</div>
           </div>
 
-          <div>{messageData.message}</div>
+          <div>
+            {messageData.message.split("\n").map((line, index) => (
+              <p key={index}>{line}</p>
+            ))}
+          </div>
 
           <button className="bg-primary-color text-white self-end justify-self-end flex items-center">
             <MdEmail />
