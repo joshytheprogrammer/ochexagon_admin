@@ -1,6 +1,5 @@
 import MessageDetails from "@components/adminPanel/dashboard/messages/MessageDetails";
 import messagesArray from "@utils/messages";
-import { MdEmail } from "react-icons/md";
 
 const MessageView = ({ params }) => {
   // const message = messagesArray.find(msg => msg.id === Number(id));
