@@ -14,7 +14,7 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
 
   return (
     <aside
-      className={`bg-primary-color text-white w-[50%] sm:w-[30%] md:w-[25%] lg:w-[20%] xl:w-[15%] fixed lg:static transition-transform duration-500 ease-linear ${!isOpen ? "translate-x-[-100%]" : "translate-x-0"} lg:translate-x-0`}
+      className={`bg-primary-color text-white h-full w-[50%] sm:w-[30%] md:w-[25%] lg:w-[20%] xl:w-[15%] fixed lg:static transition-transform duration-500 ease-linear ${!isOpen ? "translate-x-[-100%]" : "translate-x-0"} lg:translate-x-0`}
     >
       <div className="flex flex-row justify-between items-center m-4 mb-12 mr-3">
         <h2 className="uppercase font-semibold text-2xl">menu</h2>
@@ -28,8 +28,8 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           <Link
             href="/dashboard"
             className={`sidebar-links ${
-              route === "/dashboard" ? "text-primary-color" : "text-white"
-            } ${route === "/dashboard" ? "bg-white" : ""}`}
+              route === "/dashboard" || route.startsWith("/dashboard") ? "text-primary-color" : "text-white"
+            } ${route === "/dashboard" || route.startsWith("/dashboard") ? "bg-white" : ""}`}
           >
             <BiSolidDashboard />
             <span>Dashboard</span>
@@ -37,8 +37,8 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           <Link
             href="/blog"
             className={`sidebar-links ${
-              route === "/blog" ? "text-primary-color" : "text-white"
-            } ${route === "/blog" ? "bg-white" : ""}`}
+              route === "/blog" || route.startsWith("/route") ?  "text-primary-color" : "text-white"
+            } ${route === "/blog" || route.startsWith("/route") ? "bg-white" : ""}`}
           >
             <BiSolidDashboard />
             <span>Blog Posts</span>
@@ -46,8 +46,8 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           <Link
             href="/testimonials"
             className={`sidebar-links ${
-              route === "/testimonials" ? "text-primary-color" : "text-white"
-            } ${route === "/testimonials" ? "bg-white" : ""}`}
+              route === "/testimonials" || route.startsWith("/testimonials") ? "text-primary-color" : "text-white"
+            } ${route === "/testimonials" || route.startsWith("/testimonials") ? "bg-white" : ""}`}
           >
             <BiSolidDashboard />
             <span>Testimonials</span>

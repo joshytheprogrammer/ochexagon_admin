@@ -2,14 +2,14 @@ import { MdEmail } from "react-icons/md";
 
 const MessageDetails = ({ messageData }) => {
   return (
-    <div className="w-full h-full flex flex-col justify-between">
+    <div className="w-full h-full flex flex-col justify-between scrollable-content overflow-y-auto px-2">
       {messageData ? (
         <>
           <div>
-            <h1 className="text-[25px] font-bold">
+            <h1 className="text-lg mo-sm:text-[25px] font-bold">
               {messageData.senderName + messageData.id}
             </h1>
-            <div className="text-lg flex flex-row justify-between mt-4 mb-12">
+            <div className="text-sm mo-sm:text-lg flex flex-row justify-between mt-4 mb-12">
               <div className="font-bold">{messageData.email}</div>
               <div className="font-semibold">{messageData.time}</div>
             </div>
