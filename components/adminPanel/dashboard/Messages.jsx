@@ -17,7 +17,7 @@ const Messages = () => {
   }
   
   return (
-    <div className="bg-white border w-full h-[90%] rounded-lg mt-6 py-4 px-8 first-letter:self-center justify-self-center overflow-hidden flex flex-col">
+    <>
       <div className="flex flex-row justify-between">
         <span className="bg-primary-color text-white w-fit rounded-full px-5 py-1">20 Messages</span>
         <input type="text" className="bg-gray w-100px rounded-[4px] px-4 py-1" />
@@ -42,7 +42,7 @@ const Messages = () => {
           </Link>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
