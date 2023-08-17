@@ -2,28 +2,30 @@ import { MdEmail } from "react-icons/md";
 
 const MessageDetails = ({ messageData }) => {
   return (
-    <div className="h-full flex flex-col">
+    <div className="w-full h-full flex flex-col justify-between">
       {messageData ? (
         <>
-          <h1 className="text-[25px] font-bold">
-            {messageData.senderName + messageData.id}
-          </h1>
-
-          <div className="text-[20px] flex flex-row justify-between">
-            <div className="font-bold">{messageData.email}</div>
-            <div className="font-semibold">{messageData.time}</div>
-          </div>
-
           <div>
-            {messageData.message.split("\n").map((line, index) => (
-              <p key={index}>{line}</p>
-            ))}
+            <h1 className="text-[25px] font-bold">
+              {messageData.senderName + messageData.id}
+            </h1>
+            <div className="text-lg flex flex-row justify-between mt-4 mb-12">
+              <div className="font-bold">{messageData.email}</div>
+              <div className="font-semibold">{messageData.time}</div>
+            </div>
+            <div className="mt-2">
+              {messageData.message.split("\n").map((line, index) => (
+                <p key={index} className="mb-4">{line}</p>
+              ))}
+            </div>
           </div>
 
-          <button className="bg-primary-color text-white self-end justify-self-end flex items-center">
-            <MdEmail />
-            <span>Reply in Email</span>
-          </button>
+          <div className="w-full flex justify-end">
+            <button className="bg-primary-color text-white text-md font-semibold flex items-center rounded-md px-4 py-2">
+              <MdEmail className="mr-2" />
+              <span>Reply in Email</span>
+            </button>
+          </div>
         </>
       ) : (
         <p>Message not found</p>
