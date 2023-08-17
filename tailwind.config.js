@@ -6,16 +6,16 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    colors: {
-      'gray': '#D9D9D9',
-      'blueish-white': '#F7F7FB',
-      'primary-color': '#2C4094',
-      'black': '#000000',
-      'white': '#ffffff',
-      'transparent-blue': '#EBEDF5'
-    },
-
     extend: {
+      colors: {
+        'gray': '#D9D9D9',
+        'blueish-white': '#F7F7FB',
+        'primary-color': '#2C4094',
+        'black': '#000000',
+        'white': '#ffffff',
+        'transparent-blue': '#EBEDF5'
+      },
+      
       screens: {
         'mo-xs': '0px',
         'mo-sm': '350px',
@@ -24,5 +24,16 @@ module.exports = {
       }
     }
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.truncate-text': {
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 }
