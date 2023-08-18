@@ -37,7 +37,7 @@ const BlogSectionComponent = () => {
                 <td className="p-3">{post.topic}</td>
                 <td className="p-3">{post.author}</td>
                 <td className="text-[30px] flex p-3">
-                  <Link href={`/blog/${post.id}`} className="text-primary-color mr-3">
+                  <Link href={`/blog/posts/${post.id}`} className="text-primary-color mr-3">
                     <BiSolidPencil />{" "}
                   </Link>
                   <button className="text-red">
