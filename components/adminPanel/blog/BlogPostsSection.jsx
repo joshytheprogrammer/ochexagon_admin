@@ -7,7 +7,7 @@ const BlogSectionComponent = () => {
   const posts = blogPostArray;
 
   return (
-    <div className="w-full overflow-hidden">
+    <div className="w-full h-full overflow-hidden">
       <div className="w-full flex justify-between mb-6">
         <div className="flex">
           <div className="datalength-btn px-3 mr-4">20 Posts</div>
@@ -19,7 +19,7 @@ const BlogSectionComponent = () => {
         </div>
       </div>
 
-      <div className="h-full">
+      <div className="h-full scrollable-content overflow-auto">
         <table className="table w-full h-full text-left text-xl">
           <thead>
             <tr className="border-b-[1px] border-black">
@@ -30,7 +30,7 @@ const BlogSectionComponent = () => {
             </tr>
           </thead>
 
-          <tbody className="w-full h-[300px] scrollable-content overflow-y-scroll font-semibold">
+          <tbody className="w-full font-semibold">
             {posts.map((post) => (
               <tr key={post.id}>
                 <td className="p-3">{post.lastModified}</td>
@@ -38,10 +38,10 @@ const BlogSectionComponent = () => {
                 <td className="p-3">{post.author}</td>
                 <td className="text-[30px] flex p-3">
                   <Link href={`/blog/posts/${post.id}`} className="text-primary-color mr-3">
-                    <BiSolidPencil />{" "}
+                    <BiSolidPencil />
                   </Link>
                   <button className="text-red">
-                    <MdDelete />{" "}
+                    <MdDelete />
                   </button>
                 </td>
               </tr>

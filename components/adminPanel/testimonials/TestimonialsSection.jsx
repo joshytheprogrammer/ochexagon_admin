@@ -1,17 +1,17 @@
-import blogPostArray from "@utils/blogposts";
+import testimonialsArray from "@utils/testimonials";
 import Link from "next/link";
 import { BiSolidPencil } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 
 const TestimonialsComponent = () => {
-  const posts = blogPostArray;
+  const testimonials = testimonialsArray;
 
   return (
-    <div className="w-full overflow-hidden">
+    <div className="w-full h-full overflow-hidden">
       <div className="w-full flex justify-between mb-6">
         <div className="flex">
-          <div className="datalength-btn px-3 mr-4">20 Posts</div>
-          <button className="adddata-btn rounded-[4px]">Add Post</button>
+          <div className="datalength-btn px-3 mr-4">20 Testimonials</div>
+          <button className="adddata-btn rounded-[4px]">Add Testimonial</button>
         </div>
 
         <div className="w-[35%]">
@@ -19,7 +19,7 @@ const TestimonialsComponent = () => {
         </div>
       </div>
 
-      <div className="h-full">
+      <div className="h-[90%] scrollable-content overflow-auto">
         <table className="table w-full h-full text-left text-xl">
           <thead>
             <tr className="border-b-[1px] border-black">
@@ -30,23 +30,23 @@ const TestimonialsComponent = () => {
             </tr>
           </thead>
 
-          {/* <tbody className="w-full h-[300px] scrollable-content overflow-y-scroll font-semibold">
-            {posts.map((post) => (
-              <tr key={post.id}>
-                <td className="p-3">{post.lastModified}</td>
-                <td className="p-3">{post.topic}</td>
-                <td className="p-3">{post.author}</td>
+          <tbody className="w-full font-semibold">
+            {testimonials.map((testimonial) => (
+              <tr key={testimonial.id}>
+                <td className="p-3">{testimonial.lastModified}</td>
+                <td className="p-3">{testimonial.caption}</td>
+                <td className="p-3">{testimonial.testifier}</td>
                 <td className="text-[30px] flex p-3">
-                  <Link href={`/blog/posts/${post.id}`} className="text-primary-color mr-3">
-                    <BiSolidPencil />{" "}
+                  <Link href={`/blog/posts/${testimonial.id}`} className="text-primary-color mr-3">
+                    <BiSolidPencil />
                   </Link>
                   <button className="text-red">
-                    <MdDelete />{" "}
+                    <MdDelete />
                   </button>
                 </td>
               </tr>
             ))}
-          </tbody> */}
+          </tbody>
         </table>
       </div>
     </div>
