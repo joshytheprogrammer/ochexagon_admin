@@ -56,4 +56,16 @@
   .dropzone-wrapper {
     @apply h-[150px] border-2 border-dashed border-black p-4 rounded-md overflow-auto relative;
   }
+
+  .input-container {
+    @apply flex flex-col;
+  }
+
+  .input-container-file {
+    @apply flex flex-col;
+  }
+
+  .input-container-textarea {
+    @apply flex flex-col;
+  }
 }

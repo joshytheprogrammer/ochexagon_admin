@@ -3,24 +3,24 @@ const TestimonialsEditComponent = ({ testimonialsData }) => {
     <div className="h-full">
       <h1>Testimonial{testimonialsData.id}</h1>
       <form action="">
-        <div>
+        <div className="input-container">
           <label htmlFor="">Name</label>
-          <input type="text" />
+          <input type="text" placeholder="Name" />
         </div>
 
-        <div>
+        <div className="input-container-file">
           <label htmlFor="">Profile Image</label>
           <input type="file" accept="image*" />
         </div>
 
-        <div>
+        <div className="input-container">
           <label htmlFor="">Location</label>
           <input type="text" placeholder="Lagos, Nigeria" />
         </div>
 
-        <div>
+        <div className="input-container">
           <label htmlFor="">Caption</label>
-          <textarea></textarea>
+          <textarea>Caption</textarea>
         </div>
       </form>
     </div>
