@@ -30,7 +30,7 @@
   }
 
   .scrollable-content::-webkit-scrollbar {
-    @apply w-[2px] lg:w-2;
+    @apply w-[2px] lg:w-2 h-[2px] lg:h-2;
   }
 
   .scrollable-content::-webkit-scrollbar-track {
