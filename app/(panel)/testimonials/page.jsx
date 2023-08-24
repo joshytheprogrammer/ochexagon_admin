@@ -1,7 +1,11 @@
-const TestimonialsSection = () => {
+import TestimonialsComponent from "@components/adminPanel/testimonials/TestimonialsSection";
+
+const Testimonials = () => {
   return (
-    <div>Testimonials section</div>
+    <>
+      <TestimonialsComponent />
+    </>
   );
 }
  
-export default TestimonialsSection;
+export default Testimonials;

@@ -7,8 +7,8 @@ const Messages = () => {
   return (
     <div className="h-full overflow-hidden flex flex-col">
       <div className="flex flex-col-reverse mo-lg:flex-row justify-between mb-2 lg:mb-0">
-        <span className="bg-primary-color text-white font-medium w-fit flex items-center px-8 py-2 rounded-full">{`${messageList.length} messages`}</span>
-        <input type="text" className="bg-gray w-full mo-lg:w-[50%] px-4 py-1 mb-5 lg:mb-0" />
+        <span className="datalength-btn">{`${messageList.length} messages`}</span>
+        <input type="text" className="search-btn w-full mo-lg:w-[50%] mb-5 lg:mb-0" />
       </div>
 
       <p className="text-sm font-semibold my-2">3 Unread Messages</p>

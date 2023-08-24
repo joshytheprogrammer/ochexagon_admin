@@ -30,7 +30,7 @@
   }
 
   .scrollable-content::-webkit-scrollbar {
-    @apply w-[2px] lg:w-2;
+    @apply w-[2px] lg:w-2 h-[2px] lg:h-2;
   }
 
   .scrollable-content::-webkit-scrollbar-track {
@@ -39,5 +39,21 @@
 
   .scrollable-content::-webkit-scrollbar-thumb {
     @apply bg-primary-color rounded-[4px];
+  }
+
+  .datalength-btn {
+    @apply bg-primary-color text-white font-medium w-fit flex items-center px-8 py-1 rounded-full;
+  }
+
+  .adddata-btn {
+    @apply bg-primary-color text-white font-medium px-4 py-1;
+  }
+
+  .search-bar {
+    @apply bg-gray rounded-[4px] px-4 py-1;
+  }
+
+  .dropzone-wrapper {
+    @apply h-[150px] border-2 border-dashed border-black p-4 rounded-md overflow-auto relative;
   }
 }
