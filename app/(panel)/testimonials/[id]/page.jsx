@@ -1,3 +1,4 @@
+import TestimonialsEditComponent from "@components/adminPanel/testimonials/TestimonialsEditComponent";
 import testimonialsArray from "@utils/testimonials";
 
 const BlogEditPage = ({ params }) => {
@@ -7,7 +8,7 @@ const BlogEditPage = ({ params }) => {
   
   return (
     <>
-      <h1>{testimonial.id}</h1>
+      <TestimonialsEditComponent testimonialsData={testimonial} />
     </>
   );
 }
