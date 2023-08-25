@@ -9,13 +9,13 @@ module.exports = {
     extend: {
       colors: {
         'gray': '#D9D9D9',
-        'darkGray:': '#9D9DCE',
         'blueish-white': '#F7F7FB',
         'primary-color': '#2C4094',
         'black': '#000000',
         'white': '#ffffff',
         'transparent-blue': '#EBEDF5',
-        'red': '#C12929'
+        'red': '#C12929',
+        'darkGray': '#9D9DCE'
       },
       
       screens: {
