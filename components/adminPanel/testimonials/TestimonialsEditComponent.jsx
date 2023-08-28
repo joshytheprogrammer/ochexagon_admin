@@ -12,8 +12,8 @@ const TestimonialsEditComponent = () => {
   const requiredMsg = "This Field is required";
 
   return (
-    <div className="h-full flex flex-row justify-between items-center">
-      <form action="" className="w-[40%]">
+    <div className="h-full w-full flex flex-row md:items-center justify-center lg:justify-between scrollable-content overflow-auto">
+      <form action="" className="w-full pr-2 md:w-[80%] lg:w-[40%]">
         <div className="input-container">
           <label htmlFor="">Name</label>
           <input
@@ -50,18 +50,20 @@ const TestimonialsEditComponent = () => {
             {...register("caption", { required: requiredMsg })}
           ></textarea>
         </div>
+
+        <input type="submit" value="Save" className="text-white bg-primary-color py-2 px-6 rounded-md" />
       </form>
 
-      <div className="xl:p-8 xl:border-2 mb-8 lg:mb-4 drop-shadow-2xl rounded-2xl w-[48%] relative text-center xl:text-left h-fit">
-        <Image
-          src={watchedValues.profileImg && URL.createObjectURL(watchedValues.profileImg[0]) || womanPicture}
+      <div className="p-6 xl:p-8 border-2 mb-8 lg:mb-4 drop-shadow-2xl rounded-2xl w-[48%] relative text-left h-fit hidden lg:block">
+        {watchedValues.profileImg && <Image
+          src={watchedValues.profileImg[0] ? URL.createObjectURL(watchedValues.profileImg[0]) : womanPicture}
           alt="Profile Picture"
           width={60}
           height={60}
-          className="absolute w-[60px] aspect-square -top-[24px] -left-[30px] border-2 rounded-full hidden xl:block"
-        />
+          className="absolute w-[60px] aspect-square -top-[24px] -left-[30px] border-2 rounded-full block"
+        />}
 
-        <p className="max-w-full over lg:text-lg break-words">
+        <p className="max-w-full lg:text-md xl:text-lg break-words">
           {watchedValues.caption || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus commodi ullam aspernatur! Officiis aliquid suscipit quibusdam unde quas doloremque vel voluptates quasi similique eius, voluptatum, hic ea. Distinctio, sed neque optio tempora odit laudantium a ad sit nostrum repudiandae! Ipsum?"}
         </p>
 

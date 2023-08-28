@@ -58,7 +58,11 @@
   }
 
   .input-container {
-    @apply flex flex-col mb-3;
+    @apply flex flex-col mb-6 lg:mb-3;
+  }
+
+  .input-container label {
+    @apply mb-2;
   }
 
   .input-container input {
