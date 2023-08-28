@@ -58,14 +58,30 @@
   }
 
   .input-container {
+    @apply flex flex-col mb-3;
+  }
+
+  .input-container input {
+    @apply outline-none border-[1.5px] border-darkGray focus:border-[2px] focus:border-primary-color rounded-md px-4 py-1;
+  }
+
+  .input-container textarea {
+    @apply outline-none border-[1.5px] border-darkGray focus:border-[2px] focus:border-primary-color rounded-md px-4 py-1;
+  }
+
+  /* .input-container-file {
     @apply flex flex-col;
   }
 
-  .input-container-file {
-    @apply flex flex-col;
+  .input-container-file input {
+    @apply border border-gray rounded px-4 py-1;
   }
 
   .input-container-textarea {
     @apply flex flex-col;
   }
+
+  .input-container-textarea textarea {
+    @apply border border-gray rounded px-4 py-1;
+  } */
 }
