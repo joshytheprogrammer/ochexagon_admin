@@ -5,7 +5,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import FileUploader from "@components/adminPanel/FileUploader/FileUploader";
 
-const BlogEditComponent = () => {
+const BlogEditComponent = ({ blogData }) => {
   // const {
   //   register,
   //   handleSubmit,
@@ -16,6 +16,7 @@ const BlogEditComponent = () => {
 
   return (
     <div className="h-full">
+      <h1>{blogData.id}</h1>
       <form action="" className="scrollable-content overflow-auto h-full">
         <div>
           <label htmlFor="">Title</label>

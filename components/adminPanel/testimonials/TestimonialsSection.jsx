@@ -34,7 +34,7 @@ const TestimonialsComponent = () => {
             {testimonials.map((testimonial) => (
               <tr key={testimonial.id}>
                 <td className="text-[30px] flex p-3">
-                  <Link href={`/blog/posts/${testimonial.id}`} className="text-primary-color mr-3">
+                  <Link href={`testimonials/${testimonial.id}`} className="text-primary-color mr-3">
                     <BiSolidPencil />
                   </Link>
                   {/* <button className="text-red">
