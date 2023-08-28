@@ -16,28 +16,24 @@ const BlogEditComponent = ({ blogData }) => {
 
   return (
     <div className="h-full">
-      <h1>{blogData.id}</h1>
-      <form action="" className="scrollable-content overflow-auto h-full">
-        <div>
+      <form action="" className="w-full h-full pr-2 md:w-[95%] lg:w-[40%] overflow-auto scrollable-content">
+        <div className="input-container">
           <label htmlFor="">Title</label>
           <input type="text" />
         </div>
 
-        <div className="w-fit">
+        <div className="input-container">
           <label htmlFor="">Cover Image</label>
-
-          <FileUploader />
+          <input type="file" accept="image/*" />
+          {/* <FileUploader /> */}
         </div>
 
-        <div>
+        <div className="input-container mb-12">
           <label htmlFor="">Content</label>
-          <ReactQuill theme="snow" />
+          <textarea className="h-[200px]"></textarea>
         </div>
 
-        <div>
-          <button>Preview</button>
-          <button>Save</button>
-        </div>
+        <input type="submit" value="Save" className="w-full text-white bg-primary-color py-2 px-6 rounded-md text-lg" />
       </form>
     </div>
   );
