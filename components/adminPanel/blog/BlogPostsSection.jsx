@@ -1,7 +1,7 @@
 import blogPostArray from "@utils/blogposts";
 import Link from "next/link";
 import { BiSolidPencil } from "react-icons/bi";
-// import { MdDelete } from "react-icons/md";
+import { HiOutlineSearch } from "react-icons/hi";
 
 const BlogSectionComponent = () => {
   const posts = blogPostArray;
@@ -14,8 +14,9 @@ const BlogSectionComponent = () => {
           <button className="adddata-btn rounded-[4px]">Add Post</button>
         </div>
 
-        <div className="w-full mb-3 mo-lg:mb-0 mo-lg:w-[35%]">
-          <input type="text" className="search-bar w-full" />
+        <div className="w-full mb-3 mo-lg:mb-0 mo-lg:w-[35%] relative">
+          <input type="text" className="search-bar w-full pl-[55px]" />
+          <HiOutlineSearch className="text-2xl absolute left-[20px] top-[6px] text-primary-color" />
         </div>
       </div>
 
