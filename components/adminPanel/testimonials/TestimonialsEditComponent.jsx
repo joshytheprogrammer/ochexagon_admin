@@ -65,7 +65,7 @@ const TestimonialsEditComponent = () => {
           {watchedValues.caption || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus commodi ullam aspernatur! Officiis aliquid suscipit quibusdam unde quas doloremque vel voluptates quasi similique eius, voluptatum, hic ea. Distinctio, sed neque optio tempora odit laudantium a ad sit nostrum repudiandae! Ipsum?"}
         </p>
 
-        <h3 className="text-xl font-bold mt-4">{"Jane Doe" || watchedValues.name}</h3>
+        <h3 className="text-xl font-bold mt-4">{watchedValues.name || "Jane Doe"}</h3>
         <span className="font-semibold">{watchedValues.location || "Lagos, Nigeria"}</span>
       </div>
     </div>
