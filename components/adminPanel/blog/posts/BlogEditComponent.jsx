@@ -1,42 +1,42 @@
 "use client";
 
-// import { useForm } from "react-hook-form";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import FileUploader from "@components/adminPanel/FileUploader/FileUploader";
-
-const BlogEditComponent = ({ blogData }) => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm();
-
-  // const onSubmit = (data) => console.log(data);
+const BlogEditComponent = () => {
+  const adjustTextareaHeight = (textarea) => {
+    textarea.style.height = textarea.scrollHeight + 'px';
+  };
 
   return (
     <div className="h-full">
-      <h1>{blogData.id}</h1>
-      <form action="" className="scrollable-content overflow-auto h-full">
-        <div>
-          <label htmlFor="">Title</label>
-          <input type="text" />
-        </div>
-
-        <div className="w-fit">
-          <label htmlFor="">Cover Image</label>
-
-          <FileUploader />
-        </div>
-
-        <div>
-          <label htmlFor="">Content</label>
-          <ReactQuill theme="snow" />
+      <form
+        action=""
+        className="w-full h-full flex flex-col-reverse sm:flex-col pr-2 overflow-auto scrollable-content"
+      >
+        <div className="w-full flex justify-end mb-12">
+          <input
+            type="submit"
+            value="Save"
+            className="w-full sm:w-fit text-white bg-primary-color py-1 px-6 rounded-md text-lg cursor-pointer"
+          />
         </div>
 
         <div>
-          <button>Preview</button>
-          <button>Save</button>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:mb-8">
+            <div className="input-container w-full sm:w-[45%]">
+              <label htmlFor="">Title</label>
+              <input type="text" />
+            </div>
+            <div className="input-container w-full sm:w-[45%]">
+              <label htmlFor="">Cover Image</label>
+              <input type="file" accept="image/*" />
+              {/* <FileUploader /> */}
+            </div>
+          </div>
+          <div className="input-container mb-12">
+            <label htmlFor="" className="font-bold">
+              Content
+            </label>
+            <textarea className="h-[200px] overflow-hidden min-h-[300px]" onInput={(e) => adjustTextareaHeight(e.target)}></textarea>
+          </div>
         </div>
       </form>
     </div>

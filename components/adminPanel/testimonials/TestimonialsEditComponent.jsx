@@ -12,8 +12,8 @@ const TestimonialsEditComponent = () => {
   const requiredMsg = "This Field is required";
 
   return (
-    <div className="h-full w-full flex flex-row md:items-center justify-center lg:justify-between scrollable-content overflow-auto">
-      <form action="" className="w-full pr-2 md:w-[80%] lg:w-[40%]">
+    <div className="h-full w-full flex flex-row md:items-center justify-center lg:justify-between overflow-hidden">
+      <form action="" className="w-full h-full pr-2 md:w-[95%] lg:w-[40%] overflow-auto scrollable-content">
         <div className="input-container">
           <label htmlFor="">Name</label>
           <input
@@ -41,17 +41,17 @@ const TestimonialsEditComponent = () => {
           />
         </div>
 
-        <div className="input-container">
+        <div className="input-container mb-12">
           <label htmlFor="" className="font-bold">
             Caption
           </label>
           <textarea
-            className="h-[150px]"
+            className="h-[200px]"
             {...register("caption", { required: requiredMsg })}
           ></textarea>
         </div>
 
-        <input type="submit" value="Save" className="text-white bg-primary-color py-2 px-6 rounded-md" />
+        <input type="submit" value="Save" className="w-full text-white bg-primary-color py-2 px-6 rounded-md text-lg" />
       </form>
 
       <div className="p-6 xl:p-8 border-2 mb-8 lg:mb-4 drop-shadow-2xl rounded-2xl w-[48%] relative text-left h-fit hidden lg:block">
