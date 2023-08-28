@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import womanPicture from "@public/assets/woman.jpg";
+import profilePicEmpty from "@public/assets/person-icon.svg";
 import { useForm } from "react-hook-form";
 
 const TestimonialsEditComponent = () => {
@@ -13,7 +13,7 @@ const TestimonialsEditComponent = () => {
 
   return (
     <div className="h-full w-full flex flex-row md:items-center justify-center lg:justify-between overflow-hidden">
-      <form action="" className="w-full h-full pr-2 md:w-[95%] lg:w-[40%] overflow-auto scrollable-content">
+      <form action="" className="w-full h-full pr-2 md:w-[95%] lg:w-[40%] overflow-none scrollable-content">
         <div className="input-container">
           <label htmlFor="">Name</label>
           <input
@@ -56,11 +56,11 @@ const TestimonialsEditComponent = () => {
 
       <div className="p-6 xl:p-8 border-2 mb-8 lg:mb-4 drop-shadow-2xl rounded-2xl w-[48%] relative text-left h-fit hidden lg:block">
         {watchedValues.profileImg && <Image
-          src={watchedValues.profileImg[0] ? URL.createObjectURL(watchedValues.profileImg[0]) : womanPicture}
+          src={watchedValues.profileImg[0] ? URL.createObjectURL(watchedValues.profileImg[0]) : profilePicEmpty}
           alt="Profile Picture"
           width={60}
           height={60}
-          className="absolute w-[60px] aspect-square -top-[24px] -left-[30px] border-2 rounded-full block"
+          className="absolute w-[60px] aspect-square -top-[24px] -left-[30px] border-2 rounded-full block bg-darkGray"
         />}
 
         <p className="max-w-full lg:text-md xl:text-lg break-words">
