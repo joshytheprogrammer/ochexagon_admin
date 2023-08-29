@@ -20,7 +20,6 @@ const useSearch = (dataArray, keyString, searchInput) => {
     searchFunction(searchInput);  
   }, [dataArray, keyString, searchInput]);
 
-  console.log(filteredData)
   return { filteredData };
 }
 

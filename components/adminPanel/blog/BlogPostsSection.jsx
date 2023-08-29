@@ -9,7 +9,7 @@ import { HiOutlineSearch } from "react-icons/hi";
 
 const BlogSectionComponent = () => {
   const posts = blogPostArray;
-  const postTopics = 'topic' 
+  const postTopics = 'topic';
   const [searchInput, setSearchInput] = useState('');
 
   const { filteredData } = useSearch(posts, postTopics, searchInput);
@@ -46,9 +46,6 @@ const BlogSectionComponent = () => {
                   <Link href={`/blog/posts/${post.id}`} className="text-primary-color mr-3">
                     <BiSolidPencil />
                   </Link>
-                  {/* <button className="text-red">
-                    <MdDelete />
-                  </button> */}
                 </td>
                 <td className="p-3 h-fit">{post.topic}</td>
                 <td className="p-3 h-fit">{post.author}</td>
