@@ -1,7 +1,11 @@
+import BlogSectionComponent from "@components/adminPanel/blog/BlogPostsSection";
+
 const BlogSection = () => {
   return (
-    <div>Blog section</div>
+    <>
+      <BlogSectionComponent />
+    </>
   );
-}
- 
+};
+
 export default BlogSection;

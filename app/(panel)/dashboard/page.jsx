@@ -1,6 +1,10 @@
+import Messages from "@components/adminPanel/dashboard/Messages";
+
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <>
+      <Messages />
+    </>
   );
 }
  

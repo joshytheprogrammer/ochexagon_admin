@@ -1,3 +1,91 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@layer components {
+  .form_field {
+    @apply w-full flex flex-col mb-4;
+  }
+
+  .form_field label {
+    @apply text-black font-normal mb-1;
+  }
+
+  .form_field input {
+    @apply w-full border-solid border-[1.5px] border-gray outline-none focus:border-primary-color focus:border-[2px] rounded-[4px] py-2 px-3;
+  }
+
+  .sidebar-links {
+    @apply w-full flex items-center mb-6 px-4 py-3;
+  }
+
+  .sidebar-links svg {
+    @apply text-[25px] mr-2;
+  }
+
+  .scrollable-content::-webkit-scrollbar {
+    @apply w-[2px] lg:w-2 h-[2px] lg:h-2;
+  }
+
+  .scrollable-content::-webkit-scrollbar-track {
+    @apply bg-gray;
+  }
+
+  .scrollable-content::-webkit-scrollbar-thumb {
+    @apply bg-primary-color rounded-[4px];
+  }
+
+  .datalength-btn {
+    @apply bg-primary-color text-white font-medium w-fit flex items-center px-8 py-1 rounded-full;
+  }
+
+  .adddata-btn {
+    @apply bg-primary-color text-white font-medium px-4 py-1;
+  }
+
+  .search-bar {
+    @apply outline-none border-[1.5px] border-black focus:border-[2px] focus:border-primary-color rounded-md px-4 py-1;;
+  }
+
+  .dropzone-wrapper {
+    @apply h-[150px] border-2 border-dashed border-black p-4 rounded-md overflow-auto relative;
+  }
+
+  .input-container {
+    @apply flex flex-col mb-6 lg:mb-3;
+  }
+
+  .input-container label {
+    @apply mb-2;
+  }
+
+  .input-container input {
+    @apply outline-none border-[1.5px] border-darkGray focus:border-[2px] focus:border-primary-color rounded-md px-4 py-1;
+  }
+
+  .input-container textarea {
+    @apply outline-none border-[1.5px] border-darkGray focus:border-[2px] focus:border-primary-color rounded-md px-4 py-1;
+  }
+
+  /* .input-container-file {
+    @apply flex flex-col;
+  }
+
+  .input-container-file input {
+    @apply border border-gray rounded px-4 py-1;
+  }
+
+  .input-container-textarea {
+    @apply flex flex-col;
+  }
+
+  .input-container-textarea textarea {
+    @apply border border-gray rounded px-4 py-1;
+  } */
+}
