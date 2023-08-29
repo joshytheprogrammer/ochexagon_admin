@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-// import { CountriesContext } from '@app/page';
 
-const useSearch = (dataArray, filteredBy, searchInput) => {
-  const [filteredData, setFilteredData] = useState([]);
+const useSearch = (dataArray, keyString, searchInput) => {
+  const [filteredData, setFilteredData] = useState(dataArray);
   
   const lowerCase = (text) => {
     const lowerCaseText = text.toLowerCase();
@@ -12,16 +11,18 @@ const useSearch = (dataArray, filteredBy, searchInput) => {
 
   useEffect(() => {
     const searchFunction = () => {
-      const filteredResults = dataArray.filter(() => 
-        lowerCase(filteredBy).includes(lowerCase(searchInput))
+      const filteredResults = dataArray.filter(data => 
+        lowerCase(data[keyString]).includes(lowerCase(searchInput))
       );
       setFilteredData(filteredResults);
     }
 
     searchFunction(searchInput);  
-  }, [dataArray, filteredBy, searchInput]);
+  }, [dataArray, keyString, searchInput]);
 
+  console.log(filteredData)
   return { filteredData };
 }
+
  
 export default useSearch;
