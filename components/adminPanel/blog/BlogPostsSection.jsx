@@ -19,7 +19,7 @@ const BlogSectionComponent = () => {
       <div className="w-full flex flex-col-reverse mo-lg:flex-row mo-lg:justify-between mb-6">
         <div className="flex">
           <div className="datalength-btn px-3 mr-4">20 Posts</div>
-          <button className="adddata-btn rounded-[4px]">Add Post</button>
+          <Link href={`/blog/posts/new`} className="adddata-btn rounded-[4px]">Add Post</Link>
         </div>
 
         <div className="w-full mb-3 mo-lg:mb-0 mo-lg:w-[35%] relative">
