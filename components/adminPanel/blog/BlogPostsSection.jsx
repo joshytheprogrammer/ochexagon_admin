@@ -29,7 +29,7 @@ const BlogSectionComponent = () => {
       </div>
 
       <div className="h-[75%] mo-lg:h-[90%] scrollable-content overflow-auto">
-      <table className="table w-max mo-lg:w-full h-full text-left mo-lg:text-xl">
+      <table className="table w-max mo-lg:w-full h-fit text-left mo-lg:text-xl">
           <thead>
             <tr className="border-b-[1px] border-black">
               <th className="pb-4 p-3">Actions</th>
@@ -39,7 +39,7 @@ const BlogSectionComponent = () => {
             </tr>
           </thead>
 
-          {filteredData.length == 0 ? <div>No result found  </div> : <tbody className="w-full font-semibold">
+          {filteredData.length == 0 ? <div>No result found</div> : <tbody className="w-full font-semibold">
             {filteredData.map((post) => (
               <tr key={post.id} className="h-fit">
                 <td className="text-[30px] flex p-3">
