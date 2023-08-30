@@ -39,7 +39,7 @@ const BlogSectionComponent = () => {
             </tr>
           </thead>
 
-          <tbody className="w-full font-semibold">
+          {filteredData.length == 0 ? <div>No result found  </div> : <tbody className="w-full font-semibold">
             {filteredData.map((post) => (
               <tr key={post.id} className="h-fit">
                 <td className="text-[30px] flex p-3">
@@ -52,7 +52,7 @@ const BlogSectionComponent = () => {
                 <td className="p-3 h-fit">{post.lastModified}</td>
               </tr>
             ))}
-          </tbody>
+          </tbody>}
         </table>
       </div>
     </div>
