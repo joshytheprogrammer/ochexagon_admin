@@ -15,13 +15,10 @@ const AdminPanelLayout = ({ children }) => {
   return (
     <div className="adminPanel bg-blueish-white w-full flex flex-col h-screen">
       <Header />
-
       <div className="flex-1 flex overflow-hidden">
         <SidePanel isOpen={isOpen} setIsOpen={setIsOpen} />
-
         <main className="w-full lg:w-[85%] h-full px-4 mo-lg:px-8 lg:px-12 py-4">
           <MenuBtn onClick={openMenu} />
-
           {children}
         </main>
       </div>

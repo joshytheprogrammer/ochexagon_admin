@@ -1,7 +1,7 @@
 "use client"
 
 import useSearch from "@utils/customHooks/useSearch";
-import testimonialsArray from "@utils/testimonials";
+import testimonialsArray from "@utils/lists/testimonials";
 import Link from "next/link";
 import { useState } from "react";
 import { BiSolidPencil } from "react-icons/bi";
