@@ -1,6 +1,10 @@
+import MessagesContext from "@utils/context/MessagesContext";
+import { useContext } from "react";
 import { MdEmail } from "react-icons/md";
 
 const MessageDetails = ({ messageData }) => {
+  const messagesList = useContext(MessagesContext);
+
   return (
     <div className="w-full h-full flex flex-col justify-between scrollable-content overflow-y-auto px-2">
       {messageData ? (
