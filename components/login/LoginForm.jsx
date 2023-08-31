@@ -51,7 +51,7 @@ const LoginForm = () => {
       <h1 className="text-[25px] font-semibold">Sign in</h1>
 
       {error && (
-        <div className="bg-red bg-opacity-10 text-center mt-4 w-full p-1 rounded-[4px] font-bold border border-red text-red">
+        <div className="bg-red bg-opacity-5 text-center mt-4 w-full p-1 rounded-[4px] font-semibold border border-red text-red">
           {error}
         </div>
       )}
