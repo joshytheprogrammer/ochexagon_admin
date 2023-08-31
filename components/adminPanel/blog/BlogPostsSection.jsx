@@ -1,6 +1,6 @@
 "use client";
 
-import blogPostArray from "@utils/blogposts";
+import blogPostArray from "@utils/lists/blogposts";
 import useSearch from "@utils/customHooks/useSearch";
 import Link from "next/link";
 import { useState } from "react";

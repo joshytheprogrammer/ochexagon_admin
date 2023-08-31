@@ -1,5 +1,5 @@
 import TestimonialsEditComponent from "@components/adminPanel/testimonials/TestimonialsEditComponent";
-import testimonialsArray from "@utils/testimonials";
+import testimonialsArray from "@utils/lists/testimonials";
 
 const BlogEditPage = ({ params }) => {
   const testimonialsList = testimonialsArray;

@@ -1,13 +1,32 @@
-import messagesArray from "@utils/messages";
+"use client"
+
+import { fetchMessages } from "@utils/firebase/utils";
+import messagesArray from "@utils/lists/messages";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Messages = () => {
   const messageList = messagesArray;
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await fetchMessages();
+        setMessages(data);
+      } catch (error) {
+        console.log(error.code);
+      }
+    }
+    fetchData();
+  }, []);
+
+  console.log(messages);
   
   return (
     <div className="h-full overflow-hidden flex flex-col">
       <div className="flex flex-col-reverse mo-lg:flex-row justify-between mb-2 lg:mb-0">
-        <span className="datalength-btn">{`${messageList.length} messages`}</span>
+        <span className="datalength-btn">{messages.length == 1 ? `${messages.length} message` : `${messages.length} messages`}</span>
         <input type="text" className="search-btn w-full mo-lg:w-[50%] mb-5 lg:mb-0" />
       </div>
 
@@ -25,7 +44,7 @@ const Messages = () => {
 
             <div className="font-semibold text-sm flex justify-between">
               <p className="truncate-text w-[75%]">{message.message}</p>
-              <span>{message.time}</span>
+              <span>18:47</span>
             </div>
           </Link>
         ))}
