@@ -1,4 +1,17 @@
 const DashboardLayout = ({ children }) => {
+  // const [messages, setMessages] = useState([]);
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const data = await fetchMessages();
+  //       setMessages(data);
+  //     } catch (error) {
+  //       console.log(error.code);
+  //     }
+  //   }
+  //   fetchData();
+  // }, []);
   return (
     <div className="h-full w-full flex flex-col">
       <h1 className="font-bold text-[25px]">Messages</h1>
