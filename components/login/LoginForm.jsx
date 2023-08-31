@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { auth } from "@utils/config/firebase";
+import { auth } from "@utils/firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 
@@ -62,7 +62,7 @@ const LoginForm = () => {
           <input
             type="text"
             placeholder="Email"
-            className={`${errors.email ? 'border-red' : 'border-darkGray'}`}
+            className={`${errors.email ? 'border-red focus:border-red' : 'border-darkGray focus:border-primary-color'}`}
             {...register("email", {
               required: "Email is required",
               pattern: {
@@ -89,7 +89,7 @@ const LoginForm = () => {
           disabled={isPending}
           type="submit"
           value={!isPending ? 'Sign in' : 'Signing in...'}
-          className={`bg-primary-color text-white transition-all ease-linear duration-200 hover:opacity-90 font-semibold text-center w-full block rounded-[4px] p-2 mt-10 ${isPending ? 'bg-opacity-70' : ''}`}
+          className={`bg-primary-color text-white cursor-pointer transition-all ease-linear duration-200 hover:opacity-90 font-semibold text-center w-full block rounded-[4px] p-2 mt-10 ${isPending ? 'bg-opacity-70' : ''}`}
         />
       </div>
     </form>

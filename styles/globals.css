@@ -18,7 +18,7 @@
   }
 
   .form_field input {
-    @apply w-full border-solid border-[1.5px] outline-none focus:border-primary-color focus:border-[2px] rounded-[4px] py-2 px-3;
+    @apply w-full border-solid border-[1.5px] outline-none focus:border-[2px] rounded-[4px] py-2 px-3;
   }
 
   .form_field p {
