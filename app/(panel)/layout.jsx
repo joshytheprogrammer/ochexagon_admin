@@ -3,8 +3,7 @@
 import Header from "@components/adminPanel/Header";
 import MenuBtn from "@components/adminPanel/MenuBtn";
 import SidePanel from "@components/adminPanel/SidePanel";
-import { fetchMessages } from "@utils/firebase/utils";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const AdminPanelLayout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
