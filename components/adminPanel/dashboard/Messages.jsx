@@ -9,29 +9,34 @@ const Messages = () => {
 
   const unReadMessages = messagesList.filter((msg) => msg.data.isRead == false);
 
-  const toDateTime = (timestamp) => {
-    const milliseconds = (timestamp.seconds * 1000) + (timestamp.nanoseconds / 1000000);
-  
-    const jsDate = new Date(milliseconds);
-  
-    return jsDate;
+  function displayDateOrTime(timestamp) {
+    const toDateTime = (timestamp) => {
+      const milliseconds =
+        timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000;
+
+      const jsDate = new Date(milliseconds);
+
+      return jsDate;
+    };
+
+    const currentDateTime = new Date();
+    const inputDate = toDateTime(timestamp);
+
+    if (
+      currentDateTime.getFullYear() === inputDate.getFullYear() &&
+      currentDateTime.getMonth() === inputDate.getMonth() &&
+      currentDateTime.getDate() === inputDate.getDate()
+    ) {
+      const hours = inputDate.getHours().toString().padStart(2, "0");
+      const minutes = inputDate.getMinutes().toString().padStart(2, "0");
+      return `${hours}:${minutes}`;
+    } else {
+      const day = inputDate.getDate().toString().padStart(2, "0");
+      const month = inputDate.getMonth().toString().padStart(2, "0");
+      const year = inputDate.getFullYear().toString();
+      return `${day}/${month}/${year}`;
+    }
   }
-
-
-  // messagesList.forEach((message) => {
-  //   const firebaseDate = new Date(
-  //     message.data.timestamp.seconds * 1000 + message.data.timestamp.nanoseconds / 1000000
-  //   );
-
-  //   const year = firebaseDate.getFullYear();
-  //   const month = firebaseDate.getMonth() + 1;
-  //   const day = firebaseDate.getDate();
-  //   const hours = firebaseDate.getHours();
-  //   const minutes = firebaseDate.getMinutes();
-  //   const seconds = firebaseDate.getSeconds();
-
-  //   console.log(hours)
-  // });
 
   return (
     <div className="h-full overflow-hidden flex flex-col">
@@ -67,7 +72,7 @@ const Messages = () => {
               <p className="truncate-text w-[75%]">
                 {message.data.messageSent}
               </p>
-              <span>{`${toDateTime(message.data.timestamp).getHours()}:${toDateTime(message.data.timestamp).getMinutes()}`}</span>
+              <span>{`${displayDateOrTime(message.data.timestamp)}`}</span>
             </div>
           </Link>
         ))}
