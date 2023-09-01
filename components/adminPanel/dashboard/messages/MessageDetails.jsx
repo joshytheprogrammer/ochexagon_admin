@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MdEmail } from "react-icons/md";
 
 const MessageDetails = ({ messageData }) => {
@@ -21,10 +22,10 @@ const MessageDetails = ({ messageData }) => {
           </div>
 
           <div className="w-full flex justify-end">
-            <button className="bg-primary-color text-white text-md font-semibold flex items-center rounded-md px-4 py-2">
+            <Link href={`mailto:${messageData.data.email}`} className="bg-primary-color text-white text-md font-semibold flex items-center rounded-md px-4 py-2">
               <MdEmail className="mr-2" />
               <span>Reply in Email</span>
-            </button>
+            </Link>
           </div>
         </>
       ) : (
