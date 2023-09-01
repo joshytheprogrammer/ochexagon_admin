@@ -2,7 +2,7 @@
 
 import MessageDetails from "@components/adminPanel/dashboard/messages/MessageDetails";
 import MessagesContext from "@utils/context/MessagesContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 const MessageView = ({ params }) => {
   const messagesList = useContext(MessagesContext);
