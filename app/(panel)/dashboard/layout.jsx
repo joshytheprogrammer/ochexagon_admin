@@ -10,18 +10,6 @@ const DashboardLayout = ({ children }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const data = await fetchMessages();
-  //       setMessages(data);
-  //     } catch (error) {
-  //       console.log(error.code);
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
-
   const colRef = collection(firestore, "messages");
   const q = query(colRef, orderBy("timestamp", "desc"));
 
