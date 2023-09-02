@@ -77,19 +77,19 @@
     @apply outline-none border-[1.5px] border-darkGray focus:border-[2px] focus:border-primary-color rounded-md px-4 py-1;
   }
 
-  /* .input-container-file {
-    @apply flex flex-col;
+  .messageLink.read div:first-child {
+    @apply font-medium;
   }
 
-  .input-container-file input {
-    @apply border border-gray rounded px-4 py-1;
+  .messageLink.read div:last-child {
+    @apply font-normal;
   }
 
-  .input-container-textarea {
-    @apply flex flex-col;
+  .messageLink.unread div:first-child {
+    @apply font-bold;
   }
 
-  .input-container-textarea textarea {
-    @apply border border-gray rounded px-4 py-1;
-  } */
+  .messageLink.unread div:last-child {
+    @apply font-bold;
+  }
 }
