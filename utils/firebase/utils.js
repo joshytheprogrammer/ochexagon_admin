@@ -49,15 +49,41 @@ export async function fetchBlogPosts() {
   }
 }
 
+const toDateTime = (timestamp) => {
+  const milliseconds =
+    timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000;
+
+  const jsDate = new Date(milliseconds);
+
+  return jsDate;
+};
+
+export const toTime = (inputDate) => {
+  const hours = inputDate.getHours().toString().padStart(2, "0");
+  const minutes = inputDate.getMinutes().toString().padStart(2, "0");
+  return `${hours}:${minutes}`;
+};
+
+export const toDate = (inputDate) => {
+  const day = inputDate.getDate().toString().padStart(2, "0");
+  const month = inputDate.getMonth().toString().padStart(2, "0");
+  const year = inputDate.getFullYear().toString();
+
+  const currentDateTime = new Date();
+
+  if (
+    currentDateTime.getFullYear() === inputDate.getFullYear() &&
+    currentDateTime.getMonth() === inputDate.getMonth() &&
+    currentDateTime.getDate() === inputDate.getDate()
+  ) {
+      return "Today";
+  } else {
+    return `${day}/${month}/${year}`;
+  }
+};
+
 export const displayDateOrTime = (timestamp) => {
-  const toDateTime = (timestamp) => {
-    const milliseconds =
-      timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000;
-
-    const jsDate = new Date(milliseconds);
-
-    return jsDate;
-  };
+  toDateTime(timestamp);
 
   const currentDateTime = new Date();
   const inputDate = toDateTime(timestamp);
@@ -77,3 +103,5 @@ export const displayDateOrTime = (timestamp) => {
     return `${day}/${month}/${year}`;
   }
 };
+
+export default toDateTime;
