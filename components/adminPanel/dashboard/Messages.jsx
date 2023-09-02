@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { firestore } from "@utils/firebase/firebase";
 import { displayDateOrTime } from "@utils/firebase/utils";
+import { HiOutlineSearch } from "react-icons/hi";
 
 const Messages = () => {
   const { messages, loading } = useContext(MessagesContext);
@@ -27,10 +28,18 @@ const Messages = () => {
             ? `${messages.length} message`
             : `${messages.length} messages`}
         </span>
-        <input
+        {/* <input
           type="text"
           className="search-btn w-full mo-lg:w-[50%] mb-5 lg:mb-0"
-        />
+        /> */}
+
+        <div className="w-full mb-3 mo-lg:mb-0 mo-lg:w-[35%] relative">
+          <input
+            type="text"
+            className="search-bar w-full pl-[55px]"
+          />
+          <HiOutlineSearch className="text-2xl absolute left-[20px] top-[6px] text-primary-color" />
+        </div>
       </div>
 
       <p className="text-sm font-semibold my-2">
