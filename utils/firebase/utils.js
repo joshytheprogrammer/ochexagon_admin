@@ -48,3 +48,32 @@ export async function fetchBlogPosts() {
     throw error;
   }
 }
+
+export const displayDateOrTime = (timestamp) => {
+  const toDateTime = (timestamp) => {
+    const milliseconds =
+      timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000;
+
+    const jsDate = new Date(milliseconds);
+
+    return jsDate;
+  };
+
+  const currentDateTime = new Date();
+  const inputDate = toDateTime(timestamp);
+
+  if (
+    currentDateTime.getFullYear() === inputDate.getFullYear() &&
+    currentDateTime.getMonth() === inputDate.getMonth() &&
+    currentDateTime.getDate() === inputDate.getDate()
+  ) {
+    const hours = inputDate.getHours().toString().padStart(2, "0");
+    const minutes = inputDate.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
+  } else {
+    const day = inputDate.getDate().toString().padStart(2, "0");
+    const month = inputDate.getMonth().toString().padStart(2, "0");
+    const year = inputDate.getFullYear().toString();
+    return `${day}/${month}/${year}`;
+  }
+};
