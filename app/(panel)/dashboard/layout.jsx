@@ -1,26 +1,45 @@
 "use client";
 
 import MessagesContext from "@utils/context/MessagesContext";
-import { fetchMessages } from "@utils/firebase/utils";
+import { firestore } from "@utils/firebase/firebase";
+// import { fetchMessages } from "@utils/firebase/utils";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 const DashboardLayout = ({ children }) => {
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const data = await fetchMessages();
+  //       setMessages(data);
+  //     } catch (error) {
+  //       console.log(error.code);
+  //     }
+  //   }
+  //   fetchData();
+  // }, []);
+
+  const colRef = collection(firestore, "messages");
+  const q = query(colRef, orderBy("timestamp", "desc"));
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await fetchMessages();
-        setMessages(data);
-      } catch (error) {
-        console.log(error.code);
-      }
-    }
-    fetchData();
-  }, []);
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const updatedData = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setMessages(updatedData);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, [q]);
 
   return (
-    <MessagesContext.Provider value={messages}>
+    <MessagesContext.Provider value={{messages, loading}}>
       <div className="h-full w-full flex flex-col">
         <h1 className="font-bold text-[25px]">Messages</h1>
 

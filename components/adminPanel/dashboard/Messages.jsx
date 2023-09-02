@@ -2,39 +2,13 @@
 
 import MessagesContext from "@utils/context/MessagesContext";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
-import {
-  doc,
-  updateDoc,
-  onSnapshot,
-  collection,
-  query,
-  orderBy,
-} from "firebase/firestore";
+import { useContext } from "react";
+import { doc, updateDoc } from "firebase/firestore";
 import { firestore } from "@utils/firebase/firebase";
 import { displayDateOrTime } from "@utils/firebase/utils";
 
 const Messages = () => {
-  // const messagesList = useContext(MessagesContext);
-
-  const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const colRef = collection(firestore, "messages");
-  const q = query(colRef, orderBy("timestamp", "desc"));
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const updatedData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setMessages(updatedData);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, [q]);
+  const { messages, loading } = useContext(MessagesContext);
 
   const unReadMessages = messages.filter((msg) => msg.isRead == false);
 
@@ -44,35 +18,6 @@ const Messages = () => {
       isRead: true,
     });
   };
-
-  // const displayDateOrTime = (timestamp) => {
-  //   const toDateTime = (timestamp) => {
-  //     const milliseconds =
-  //       timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000;
-
-  //     const jsDate = new Date(milliseconds);
-
-  //     return jsDate;
-  //   };
-
-  //   const currentDateTime = new Date();
-  //   const inputDate = toDateTime(timestamp);
-
-  //   if (
-  //     currentDateTime.getFullYear() === inputDate.getFullYear() &&
-  //     currentDateTime.getMonth() === inputDate.getMonth() &&
-  //     currentDateTime.getDate() === inputDate.getDate()
-  //   ) {
-  //     const hours = inputDate.getHours().toString().padStart(2, "0");
-  //     const minutes = inputDate.getMinutes().toString().padStart(2, "0");
-  //     return `${hours}:${minutes}`;
-  //   } else {
-  //     const day = inputDate.getDate().toString().padStart(2, "0");
-  //     const month = inputDate.getMonth().toString().padStart(2, "0");
-  //     const year = inputDate.getFullYear().toString();
-  //     return `${day}/${month}/${year}`;
-  //   }
-  // };
 
   return (
     <div className="h-full overflow-hidden flex flex-col">
