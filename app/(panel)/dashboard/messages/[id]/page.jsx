@@ -5,14 +5,14 @@ import MessagesContext from "@utils/context/MessagesContext";
 import { useContext } from "react";
 
 const MessageView = ({ params }) => {
-  const messagesList = useContext(MessagesContext);
+  const { messages, loading } = useContext(MessagesContext);
   const id = params.id;
 
-  const message = messagesList.find(msg => msg.id === id);
+  const message = messages.find(msg => msg.id === id);
   
   return (
     <>
-      <MessageDetails messageData={message} />
+      <MessageDetails messageData={message} loading={loading} />
     </>
   );
 };
