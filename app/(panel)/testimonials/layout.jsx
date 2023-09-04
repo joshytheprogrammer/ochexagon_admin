@@ -1,30 +1,25 @@
 "use client"
 
 import TestimonialsContext from "@utils/context/TestimonialsContext";
-import { firestore } from "@utils/firebase/firebase";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { fetchTestimonials } from "@utils/firebase/utils";
 import { useEffect, useState } from "react";
 
 const TestimonialSectionLayout = ({ children }) => {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const colRef = collection(firestore, "testimonials");
-  const q = query(colRef, orderBy("lastModified", "desc"));
-
   useEffect(() => {
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const updatedData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setTestimonials(updatedData);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, [q]);
-
+    async function fetchData() {
+      try {
+        const data = await fetchTestimonials();
+        setTestimonials(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    fetchData();
+  }, []);
   return (
     <TestimonialsContext.Provider value={{testimonials, loading}}>
       <div className="h-full w-full flex flex-col">
