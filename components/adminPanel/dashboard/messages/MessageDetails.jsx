@@ -1,40 +1,48 @@
-import MessagesContext from "@utils/context/MessagesContext";
-import { useContext } from "react";
+import toDateTime, { toDate, toTime } from "@utils/firebase/utils";
+import Link from "next/link";
 import { MdEmail } from "react-icons/md";
 
-const MessageDetails = ({ messageData }) => {
-  const messagesList = useContext(MessagesContext);
-
+const MessageDetails = ({ messageData, loading }) => {
   return (
-    <div className="w-full h-full flex flex-col justify-between scrollable-content overflow-y-auto px-2">
-      {messageData ? (
-        <>
+    <>
+      {loading && <div>Loading...</div>}
+      {messageData && (
+        <div className="w-full h-full flex flex-col justify-between scrollable-content overflow-y-auto px-2">
           <div>
-            <h1 className="text-lg mo-sm:text-[25px] font-bold">
-              {messageData.senderName + messageData.id}
-            </h1>
-            <div className="text-sm mo-sm:text-lg flex flex-row justify-between mt-4 mb-12">
+            <div className="flex flex-row justify-between">
+              <h1 className="text-lg mo-sm:text-[25px] font-bold">
+                {messageData.senderName}
+              </h1>
+
+              <div className="font-semibold">
+                {toDate(toDateTime(messageData.timestamp))} at{" "}
+                {toTime(toDateTime(messageData.timestamp))}
+              </div>
+            </div>
+            <div className="text-sm mo-sm:text-lg mt-4 mb-12">
               <div className="font-bold">{messageData.email}</div>
-              <div className="font-semibold">{messageData.time}</div>
             </div>
             <div className="mt-2">
-              {messageData.message.split("\n").map((line, index) => (
-                <p key={index} className="mb-4">{line}</p>
+              {messageData.messageSent.split("\n").map((line, index) => (
+                <p key={index} className="mb-4">
+                  {line}
+                </p>
               ))}
             </div>
           </div>
 
           <div className="w-full flex justify-end">
-            <button className="bg-primary-color text-white text-md font-semibold flex items-center rounded-md px-4 py-2">
+            <Link
+              href={`mailto:${messageData.email}`}
+              className="bg-primary-color text-white text-md font-semibold flex items-center rounded-md px-4 py-2"
+            >
               <MdEmail className="mr-2" />
               <span>Reply in Email</span>
-            </button>
+            </Link>
           </div>
-        </>
-      ) : (
-        <p>Message not found</p>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
