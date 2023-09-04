@@ -2,7 +2,6 @@
 
 import MessagesContext from "@utils/context/MessagesContext";
 import { firestore } from "@utils/firebase/firebase";
-// import { fetchMessages } from "@utils/firebase/utils";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
