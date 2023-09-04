@@ -1,9 +1,9 @@
-import BlogEditComponent from "@components/adminPanel/blog/posts/BlogEditComponent";
+import NewPostsComponent from "@components/adminPanel/blog/posts/NewPostsComponent";
 
 const NewBlog = () => {
   return (
     <>
-      <BlogEditComponent />
+      <NewPostsComponent />
     </>
   );
 };
