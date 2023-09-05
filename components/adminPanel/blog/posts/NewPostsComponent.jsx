@@ -18,8 +18,6 @@ const NewPostsComponent = () => {
     formState: { isValid, isSubmitting, isSubmitted },
   } = useForm();
 
-  const isOpen = true;
-
   const onSubmit = async (data) => {
     try {
       const currentDate = new Date();
