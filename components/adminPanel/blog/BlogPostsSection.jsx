@@ -14,10 +14,11 @@ const BlogSectionComponent = () => {
 
   const { blogPosts, loading } = useContext(BlogPostsContext);
 
+  const dataString = "data"
   const postTopics = "title";
   const [searchInput, setSearchInput] = useState("");
 
-  const { filteredData } = useSearch(blogPosts, postTopics, searchInput);
+  const { filteredData } = useSearch(blogPosts, searchInput, dataString, postTopics);
 
   return (
     <div className="w-full h-full overflow-hidden">
@@ -30,7 +31,7 @@ const BlogSectionComponent = () => {
         </div>
 
         <div className="w-full mb-3 mo-lg:mb-0 mo-lg:w-[35%] relative">
-          <input type="text" className="search-bar w-full pl-[55px]" onChange={setSearchInput} />
+          <input type="text" className="search-bar w-full pl-[55px]" onChange={(e) => setSearchInput(e.target.value)} />
           <HiOutlineSearch className="text-2xl absolute left-[20px] top-[6px] text-primary-color" />
         </div>
       </div>
