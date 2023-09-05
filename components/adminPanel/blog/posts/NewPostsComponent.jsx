@@ -3,12 +3,15 @@
 import { firestore, storage } from "@utils/firebase/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 const NewPostsComponent = () => {
   const adjustTextareaHeight = (textarea) => {
     textarea.style.height = textarea.scrollHeight + "px";
   };
+
+  const router = useRouter();
 
   const {
     register,
@@ -41,6 +44,9 @@ const NewPostsComponent = () => {
         "Blog posts created successfully and saved to Firestore:",
         modifiedData
       );
+
+      router.push("/blog");
+
     } catch (error) {
       console.error("Error creating blog post and saving to Firestore:", error);
     }
