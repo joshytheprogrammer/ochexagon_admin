@@ -1,17 +1,17 @@
 "use client";
 
 import BlogPostsContext from "@utils/context/BlogPostsContext";
-import { firestore } from "@utils/firebase/firebase";
+// import { firestore } from "@utils/firebase/firebase";
 import { fetchBlogPosts } from "@utils/firebase/utils";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+// import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 const BlogPostsLayout = ({ children }) => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const colRef = collection(firestore, "blog");
-  const q = query(colRef, orderBy("dateCreated", "desc"));
+  // const colRef = collection(firestore, "blog");
+  // const q = query(colRef, orderBy("dateCreated", "desc"));
 
   // useEffect(() => {
   //   const unsubscribe = onSnapshot(q, (snapshot) => {

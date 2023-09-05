@@ -2,20 +2,22 @@
 
 // import useSearch from "@utils/customHooks/useSearch";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { BiSolidPencil } from "react-icons/bi";
 import { HiOutlineSearch } from "react-icons/hi";
 import BlogPostsContext from "@utils/context/BlogPostsContext";
 import { displayDateOrTime } from "@utils/firebase/utils";
+import useSearch from "@utils/customHooks/useSearch";
 
 const BlogSectionComponent = () => {
   // const posts = blogPostArray;
-  // const postTopics = "topic";
-  // const [searchInput, setSearchInput] = useState("");
-
-  // const { filteredData } = useSearch(posts, postTopics, searchInput);
 
   const { blogPosts, loading } = useContext(BlogPostsContext);
+
+  const postTopics = "title";
+  const [searchInput, setSearchInput] = useState("");
+
+  const { filteredData } = useSearch(blogPosts, postTopics, searchInput);
 
   return (
     <div className="w-full h-full overflow-hidden">
@@ -28,14 +30,14 @@ const BlogSectionComponent = () => {
         </div>
 
         <div className="w-full mb-3 mo-lg:mb-0 mo-lg:w-[35%] relative">
-          <input type="text" className="search-bar w-full pl-[55px]" />
+          <input type="text" className="search-bar w-full pl-[55px]" onChange={setSearchInput} />
           <HiOutlineSearch className="text-2xl absolute left-[20px] top-[6px] text-primary-color" />
         </div>
       </div>
 
       <div className="h-[75%] mo-lg:h-[90%] scrollable-content overflow-auto">
         {loading && <div>Loading...</div>}
-        {blogPosts && (
+        {filteredData && (
           <table className="table w-max mo-lg:w-full h-fit text-left mo-lg:text-md">
             <thead>
               <tr className="border-b-[1px] border-black">
@@ -51,7 +53,7 @@ const BlogSectionComponent = () => {
               ) : (
                 ""
               )}
-              {blogPosts.map((post) => (
+              {filteredData.map((post) => (
                 <tr key={post.id} className="h-fit">
                   <td className="text-[28px] flex px-3 py-2">
                     <Link
