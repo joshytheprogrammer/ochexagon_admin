@@ -1,43 +1,43 @@
 "use client";
 
 import BlogPostsContext from "@utils/context/BlogPostsContext";
-// import { firestore } from "@utils/firebase/firebase";
+import { firestore } from "@utils/firebase/firebase";
 import { fetchBlogPosts } from "@utils/firebase/utils";
-// import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 const BlogPostsLayout = ({ children }) => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // const colRef = collection(firestore, "blog");
-  // const q = query(colRef, orderBy("lastModified", "desc"));
-
-  // useEffect(() => {
-  //   const unsubscribe = onSnapshot(q, (snapshot) => {
-  //     const updatedData = snapshot.docs.map((doc) => ({
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     }));
-  //     setBlogPosts(updatedData);
-  //     setLoading(false);
-  //   });
-
-  //   return () => unsubscribe();
-  // }, [q]);
+  const colRef = collection(firestore, "blog");
+  const q = query(colRef, orderBy("dateCreated", "desc"));
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await fetchBlogPosts();
-        setBlogPosts(data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-    fetchData();
-  }, []);
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const updatedData = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setBlogPosts(updatedData);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, [q]);
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const data = await fetchBlogPosts();
+  //       setBlogPosts(data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     }
+  //   }
+  //   fetchData();
+  // }, []);
   
   return (
     <BlogPostsContext.Provider value={{blogPosts, loading}}>

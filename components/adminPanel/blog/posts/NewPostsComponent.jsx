@@ -28,7 +28,6 @@ const NewPostsComponent = () => {
         content: data.content,
         dateCreated: currentDate,
       };
-
       const coverImageRef = ref(
         storage,
         `blogCoverImages/${data.coverImage[0].name}`

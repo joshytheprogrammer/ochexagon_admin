@@ -1,9 +1,8 @@
 "use client";
 
-import blogPostArray from "@utils/lists/blogposts";
-import useSearch from "@utils/customHooks/useSearch";
+// import useSearch from "@utils/customHooks/useSearch";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { BiSolidPencil } from "react-icons/bi";
 import { HiOutlineSearch } from "react-icons/hi";
 import BlogPostsContext from "@utils/context/BlogPostsContext";
@@ -29,32 +28,32 @@ const BlogSectionComponent = () => {
         </div>
 
         <div className="w-full mb-3 mo-lg:mb-0 mo-lg:w-[35%] relative">
-          <input
-            type="text"
-            className="search-bar w-full pl-[55px]"
-          />
+          <input type="text" className="search-bar w-full pl-[55px]" />
           <HiOutlineSearch className="text-2xl absolute left-[20px] top-[6px] text-primary-color" />
         </div>
       </div>
 
       <div className="h-[75%] mo-lg:h-[90%] scrollable-content overflow-auto">
-        <table className="table w-max mo-lg:w-full h-fit text-left mo-lg:text-xl">
-          <thead>
-            <tr className="border-b-[1px] border-black">
-              <th className="pb-4 p-3">Actions</th>
-              <th className="pb-4 p-3">Topic</th>
-              <th className="pb-4 p-3">Author</th>
-              <th className="pb-4 p-3">Last Modified</th>
-            </tr>
-          </thead>
-
-          {blogPosts.length == 0 ? (
-            <div>No result found</div>
-          ) : (
+        {loading && <div>Loading...</div>}
+        {blogPosts && (
+          <table className="table w-max mo-lg:w-full h-fit text-left mo-lg:text-md">
+            <thead>
+              <tr className="border-b-[1px] border-black">
+                <th className="pb-4 p-3">Actions</th>
+                <th className="pb-4 p-3">Topic</th>
+                <th className="pb-4 p-3">Author</th>
+                <th className="pb-4 p-3">Last Modified</th>
+              </tr>
+            </thead>
             <tbody className="w-full font-semibold">
+              {!loading && blogPosts.length === 0 ? (
+                <div>No results found</div>
+              ) : (
+                ""
+              )}
               {blogPosts.map((post) => (
                 <tr key={post.id} className="h-fit">
-                  <td className="text-[30px] flex p-3">
+                  <td className="text-[28px] flex px-3 py-2">
                     <Link
                       href={`/blog/posts/${post.id}`}
                       className="text-primary-color mr-3"
@@ -62,14 +61,16 @@ const BlogSectionComponent = () => {
                       <BiSolidPencil />
                     </Link>
                   </td>
-                  <td className="p-3 h-fit">{post.data.title}</td>
-                  <td className="p-3 h-fit">Owner</td>
-                  <td className="p-3 h-fit">{displayDateOrTime(post.data.dateCreated)}</td>
+                  <td className="px-3 py-2 h-fit">{post.title}</td>
+                  <td className="px-3 py-2 h-fit">Owner</td>
+                  <td className="px-3 py-2 h-fit">
+                    {displayDateOrTime(post.dateCreated)}
+                  </td>
                 </tr>
               ))}
             </tbody>
-          )}
-        </table>
+          </table>
+        )}
       </div>
     </div>
   );
