@@ -32,7 +32,7 @@ const NewPostsComponent = () => {
         `blogCoverImages/${data.coverImage[0].name}`
       );
       uploadBytes(coverImageRef, data.coverImage);
-      const coverImageUrl = getDownloadURL(coverImageRef);
+      const coverImageUrl = await getDownloadURL(coverImageRef);
       modifiedData.coverImage = coverImageUrl;
 
       await addDoc(collection(firestore, "blog"), modifiedData);
