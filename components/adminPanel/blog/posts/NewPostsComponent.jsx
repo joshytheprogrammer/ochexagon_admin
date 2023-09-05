@@ -3,28 +3,22 @@
 import { firestore, storage } from "@utils/firebase/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
+import Modal from 'react-modal';
 
 const NewPostsComponent = () => {
   const adjustTextareaHeight = (textarea) => {
     textarea.style.height = textarea.scrollHeight + "px";
   };
 
-  const [loading, setLoading] = useState(false);
-
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
-    formState: { isValid },
+    formState: { isValid, isSubmitting, isSubmitted },
   } = useForm();
 
   const onSubmit = async (data) => {
-    setLoading(true);
-
     try {
       const currentDate = new Date();
 
@@ -44,13 +38,11 @@ const NewPostsComponent = () => {
       modifiedData.coverImage = coverImageUrl;
 
       await addDoc(collection(firestore, "blog"), modifiedData);
-      setLoading(false);
       console.log(
         "Blog posts created successfully and saved to Firestore:",
         modifiedData
       );
 
-      router.push("/blog");
     } catch (error) {
       console.error("Error creating blog post and saving to Firestore:", error);
     }
@@ -66,10 +58,10 @@ const NewPostsComponent = () => {
         <div className="w-full flex justify-end mb-12">
           <input
             type="submit"
-            value={loading ? "Saving..." : "Save"}
+            value={isSubmitting ? "Saving..." : "Save"}
             disabled={!isValid}
             className={`w-full sm:w-fit text-white bg-primary-color py-1 px-6 rounded-md text-lg cursor-pointer disabled:bg-opacity-50 ${
-              loading ? "bg-opacity-50" : ""
+              isSubmitting ? "bg-opacity-50" : ""
             }`}
           />
         </div>
@@ -112,6 +104,14 @@ const NewPostsComponent = () => {
           </div>
         </div>
       </form>
+
+      <Modal isOpen={isSubmitted}>
+        <div>
+          <h2>Form Submitted!</h2>
+          <p>Thank you for submitting the form.</p>
+          <Link href="/blog">View Blogs</Link>
+        </div>
+      </Modal>
     </div>
   );
 };
