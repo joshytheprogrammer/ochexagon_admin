@@ -13,31 +13,31 @@ const BlogPostsLayout = ({ children }) => {
   const colRef = collection(firestore, "blog");
   const q = query(colRef, orderBy("dateCreated", "desc"));
 
-  useEffect(() => {
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const updatedData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setBlogPosts(updatedData);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, [q]);
-
   // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const data = await fetchBlogPosts();
-  //       setBlogPosts(data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
+  //   const unsubscribe = onSnapshot(q, (snapshot) => {
+  //     const updatedData = snapshot.docs.map((doc) => ({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     }));
+  //     setBlogPosts(updatedData);
+  //     setLoading(false);
+  //   });
+
+  //   return () => unsubscribe();
+  // }, [q]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await fetchBlogPosts();
+        setBlogPosts(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    fetchData();
+  }, []);
   
   return (
     <BlogPostsContext.Provider value={{blogPosts, loading}}>

@@ -61,10 +61,10 @@ const BlogSectionComponent = () => {
                       <BiSolidPencil />
                     </Link>
                   </td>
-                  <td className="px-3 py-2 h-fit">{post.title}</td>
+                  <td className="px-3 py-2 h-fit">{post.data.title}</td>
                   <td className="px-3 py-2 h-fit">Owner</td>
                   <td className="px-3 py-2 h-fit">
-                    {displayDateOrTime(post.dateCreated)}
+                    {displayDateOrTime(post.data.dateCreated)}
                   </td>
                 </tr>
               ))}
