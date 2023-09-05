@@ -3,16 +3,20 @@
 import blogPostArray from "@utils/lists/blogposts";
 import useSearch from "@utils/customHooks/useSearch";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BiSolidPencil } from "react-icons/bi";
 import { HiOutlineSearch } from "react-icons/hi";
+import BlogPostsContext from "@utils/context/BlogPostsContext";
+import { displayDateOrTime } from "@utils/firebase/utils";
 
 const BlogSectionComponent = () => {
-  const posts = blogPostArray;
-  const postTopics = "topic";
-  const [searchInput, setSearchInput] = useState("");
+  // const posts = blogPostArray;
+  // const postTopics = "topic";
+  // const [searchInput, setSearchInput] = useState("");
 
-  const { filteredData } = useSearch(posts, postTopics, searchInput);
+  // const { filteredData } = useSearch(posts, postTopics, searchInput);
+
+  const { blogPosts, loading } = useContext(BlogPostsContext);
 
   return (
     <div className="w-full h-full overflow-hidden">
@@ -28,7 +32,6 @@ const BlogSectionComponent = () => {
           <input
             type="text"
             className="search-bar w-full pl-[55px]"
-            onChange={(e) => setSearchInput(e.target.value)}
           />
           <HiOutlineSearch className="text-2xl absolute left-[20px] top-[6px] text-primary-color" />
         </div>
@@ -45,11 +48,11 @@ const BlogSectionComponent = () => {
             </tr>
           </thead>
 
-          {filteredData.length == 0 ? (
+          {blogPosts.length == 0 ? (
             <div>No result found</div>
           ) : (
             <tbody className="w-full font-semibold">
-              {filteredData.map((post) => (
+              {blogPosts.map((post) => (
                 <tr key={post.id} className="h-fit">
                   <td className="text-[30px] flex p-3">
                     <Link
@@ -59,9 +62,9 @@ const BlogSectionComponent = () => {
                       <BiSolidPencil />
                     </Link>
                   </td>
-                  <td className="p-3 h-fit">{post.topic}</td>
-                  <td className="p-3 h-fit">{post.author}</td>
-                  <td className="p-3 h-fit">{post.lastModified}</td>
+                  <td className="p-3 h-fit">{post.data.title}</td>
+                  <td className="p-3 h-fit">Owner</td>
+                  <td className="p-3 h-fit">{displayDateOrTime(post.data.dateCreated)}</td>
                 </tr>
               ))}
             </tbody>
