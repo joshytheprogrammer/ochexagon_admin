@@ -18,6 +18,8 @@ const NewPostsComponent = () => {
     formState: { isValid, isSubmitting, isSubmitted },
   } = useForm();
 
+  const isOpen = true;
+
   const onSubmit = async (data) => {
     try {
       const currentDate = new Date();
@@ -105,11 +107,13 @@ const NewPostsComponent = () => {
         </div>
       </form>
 
-      <Modal isOpen={isSubmitted}>
-        <div>
-          <h2>Form Submitted!</h2>
-          <p>Thank you for submitting the form.</p>
-          <Link href="/blog">View Blogs</Link>
+      <Modal isOpen={isSubmitted} className="bg-white w-[30%] rounded-lg" overlayClassName="bg-primary-color bg-opacity-20 flex justify-center items-center absolute top-0 bottom-0 right-0 left-0">
+        <div className="px-4 py-6">
+          <div className="mb-12">
+            <h2 className="font-bold text-lg">Blog Created!</h2>
+            <p>Your New Blog as been added to the database.</p>
+          </div>
+          <Link href="/blog" className="bg-primary-color text-white px-4 py-2 rounded-lg">View All Blogs</Link>
         </div>
       </Modal>
     </div>
