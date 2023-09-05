@@ -4,6 +4,7 @@ import { firestore, storage } from "@utils/firebase/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const NewPostsComponent = () => {
@@ -11,15 +12,19 @@ const NewPostsComponent = () => {
     textarea.style.height = textarea.scrollHeight + "px";
   };
 
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { isValid },
   } = useForm();
 
   const onSubmit = async (data) => {
+    setLoading(true);
+
     try {
       const currentDate = new Date();
 
@@ -34,19 +39,18 @@ const NewPostsComponent = () => {
         storage,
         `blogCoverImages/${data.coverImage[0].name}`
       );
-      uploadBytes(coverImageRef, data.coverImage);
+      await uploadBytes(coverImageRef, data.coverImage);
       const coverImageUrl = await getDownloadURL(coverImageRef);
       modifiedData.coverImage = coverImageUrl;
 
       await addDoc(collection(firestore, "blog"), modifiedData);
-
+      setLoading(false);
       console.log(
         "Blog posts created successfully and saved to Firestore:",
         modifiedData
       );
 
       router.push("/blog");
-
     } catch (error) {
       console.error("Error creating blog post and saving to Firestore:", error);
     }
@@ -62,9 +66,11 @@ const NewPostsComponent = () => {
         <div className="w-full flex justify-end mb-12">
           <input
             type="submit"
-            value="Save"
-            disabled={errors.title || errors.coverImage || errors.content}
-            className="w-full sm:w-fit text-white bg-primary-color py-1 px-6 rounded-md text-lg cursor-pointer disabled:bg-opacity-50"
+            value={loading ? "Saving..." : "Save"}
+            disabled={!isValid}
+            className={`w-full sm:w-fit text-white bg-primary-color py-1 px-6 rounded-md text-lg cursor-pointer disabled:bg-opacity-50 ${
+              loading ? "bg-opacity-50" : ""
+            }`}
           />
         </div>
 
