@@ -77,14 +77,23 @@ const BlogEditComponent = ({ blogData }) => {
 
   return (
     <div className="h-full">
+      <div
+        className="w-fit text-primary-color sm:hidden text-[28px] float-right cursor-pointer"
+        onClick={closeEdit}
+      >
+        <IoMdClose />
+      </div>
       {blogData && (
         <form
           action=""
-          className="w-full h-full flex flex-col-reverse sm:flex-col pr-2 overflow-auto scrollable-content"
+          className="w-full h-full flex flex-col-reverse sm:flex-col pr-2 overflow-auto sm:scrollable-content"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="w-full flex justify-between mb-12">
-            <div className="text-primary-color flex items-center justify-center text-[28px] cursor-pointer" onClick={closeEdit}>
+          <div className="w-full flex justify-end sm:justify-between mb-12">
+            <div
+              className="text-primary-color hidden sm:flex items-center justify-center text-[28px] cursor-pointer"
+              onClick={closeEdit}
+            >
               <IoMdClose />
             </div>
             <div className="flex">
@@ -107,7 +116,7 @@ const BlogEditComponent = ({ blogData }) => {
 
           <div>
             <div className="flex flex-col sm:flex-row sm:justify-between sm:mb-8">
-              <div className="input-container w-full sm:w-[45%]">
+              <div className="input-container w-full sm:self-end sm:w-[45%]">
                 <label htmlFor="">Title</label>
                 <input
                   type="text"
@@ -118,10 +127,10 @@ const BlogEditComponent = ({ blogData }) => {
                   })}
                 />
               </div>
-              <div className="input-container w-full sm:w-[45%]">
+              <div className="input-container w-full sm:w-[50%]">
                 <label htmlFor="">
                   Cover Image{" "}
-                  <span className="text-primary-color">{`(Note: You need to insert a new Image)`}</span>
+                  <span className="text-primary-color block mo-md:inline sm:block md:inline">{`(Note: You need to insert a new Image)`}</span>
                 </label>
                 <input
                   type="file"
@@ -153,7 +162,7 @@ const BlogEditComponent = ({ blogData }) => {
       <Modal
         isOpen={isSubmitted}
         className="bg-white w-[30%] rounded-lg"
-        overlayClassName="bg-primary-color bg-opacity-20 flex justify-center items-center absolute top-0 bottom-0 right-0 left-0"
+        overlayClassName="bg-primary-color bg-opacity-20 flex justify-center items-center w-[80%] mo-lg:w-[60%] md:w-[50%] lg:w-[30%] absolute top-0 bottom-0 right-0 left-0"
       >
         <div className="px-4 py-6">
           <div className="mb-12">
@@ -173,7 +182,7 @@ const BlogEditComponent = ({ blogData }) => {
       <Modal
         isOpen={deleteIsOpen}
         className="bg-white w-[30%] rounded-lg"
-        overlayClassName="bg-primary-color bg-opacity-20 flex justify-center items-center absolute top-0 bottom-0 right-0 left-0"
+        overlayClassName="bg-primary-color bg-opacity-20 flex justify-center items-center w-[80%] mo-lg:w-[60%] md:w-[50%] lg:w-[30%] absolute top-0 bottom-0 right-0 left-0"
       >
         <div className="px-4 py-6">
           <div className="mb-12">
@@ -202,7 +211,7 @@ const BlogEditComponent = ({ blogData }) => {
 
       <Modal
         isOpen={closeQuery}
-        className="bg-white w-[30%] rounded-lg"
+        className="bg-white w-[80%] mo-lg:w-[60%] md:w-[50%] lg:w-[30%] rounded-lg"
         overlayClassName="bg-primary-color bg-opacity-20 flex justify-center items-center absolute top-0 bottom-0 right-0 left-0"
       >
         <div className="px-4 py-6">
