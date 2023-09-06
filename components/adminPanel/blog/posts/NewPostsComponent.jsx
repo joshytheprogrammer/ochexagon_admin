@@ -34,6 +34,7 @@ const NewPostsComponent = () => {
         title: data.title,
         content: data.content,
         dateCreated: currentDate,
+        lastModified: currentDate,
       };
       const coverImageRef = ref(
         storage,
