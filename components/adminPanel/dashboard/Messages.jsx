@@ -14,10 +14,14 @@ const Messages = () => {
   const unReadMessages = messages.filter((msg) => msg.isRead == false);
 
   const handleClick = async (messageId) => {
-    const messageRef = doc(firestore, "messages", messageId);
-    await updateDoc(messageRef, {
-      isRead: true,
-    });
+    try {
+      const messageRef = doc(firestore, "messages", messageId);
+      await updateDoc(messageRef, {
+        isRead: true,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -28,16 +32,9 @@ const Messages = () => {
             ? `${messages.length} message`
             : `${messages.length} messages`}
         </span>
-        {/* <input
-          type="text"
-          className="search-btn w-full mo-lg:w-[50%] mb-5 lg:mb-0"
-        /> */}
 
         <div className="w-full mb-3 mo-lg:mb-0 mo-lg:w-[35%] relative">
-          <input
-            type="text"
-            className="search-bar w-full pl-[55px]"
-          />
+          <input type="text" className="search-bar w-full pl-[55px]" />
           <HiOutlineSearch className="text-2xl absolute left-[20px] top-[6px] text-primary-color" />
         </div>
       </div>

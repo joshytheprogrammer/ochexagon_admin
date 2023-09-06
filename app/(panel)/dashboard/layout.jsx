@@ -7,22 +7,32 @@ import { useEffect, useState } from "react";
 
 const DashboardLayout = ({ children }) => {
   const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const colRef = collection(firestore, "messages");
   const q = query(colRef, orderBy("timestamp", "desc"));
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const updatedData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setMessages(updatedData);
-      setLoading(false);
-    });
+    async function fetchData() {
+      setLoading(true);
 
-    return () => unsubscribe();
+      try {
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+          const updatedData = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setMessages(updatedData);
+          setLoading(false);
+        });
+    
+        return () => unsubscribe();
+      } catch (error) {
+        console.log(error.message);
+        setLoading(false);
+      }
+    }
+    fetchData();
   }, [q]);
 
   return (
