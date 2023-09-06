@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import Modal from "react-modal";
 import { FaTrashAlt } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 
 const BlogEditComponent = ({ blogData }) => {
@@ -17,11 +18,12 @@ const BlogEditComponent = ({ blogData }) => {
   const router = useRouter();
 
   const [deleteIsOpen, setDeleteIsOpen] = useState(false);
+  const [closeQuery, setCloseQuery] = useState(false);
 
   const {
     register,
     handleSubmit,
-    formState: { isValid, isSubmitting, isSubmitted },
+    formState: { isValid, isSubmitting, isSubmitted, isDirty },
   } = useForm();
 
   const redirect = () => {
@@ -32,7 +34,15 @@ const BlogEditComponent = ({ blogData }) => {
   const deleteBlog = async () => {
     redirect();
     await deleteDoc(doc(firestore, "blog", blogData.id));
-  }
+  };
+
+  const closeEdit = async () => {
+    if (isDirty) {
+      setCloseQuery(true);
+    } else {
+      redirect();
+    }
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -74,17 +84,25 @@ const BlogEditComponent = ({ blogData }) => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="w-full flex justify-between mb-12">
-            <div className="text-white flex items-center justify-center cursor-pointer bg-red text-lg rounded-md mr-8 px-3 py-1" onClick={() => setDeleteIsOpen(true)}>
-              <FaTrashAlt />
+            <div className="text-primary-color flex items-center justify-center text-[28px] cursor-pointer" onClick={closeEdit}>
+              <IoMdClose />
             </div>
-            <input
-              type="submit"
-              value={isSubmitting ? "Saving..." : "Save"}
-              disabled={!isValid}
-              className={`w-full sm:w-fit text-white bg-primary-color py-1 px-6 rounded-md text-lg cursor-pointer disabled:bg-opacity-50 ${
-                isSubmitting ? "bg-opacity-50" : ""
-              }`}
-            />
+            <div className="flex">
+              <div
+                className="text-white flex items-center justify-center cursor-pointer bg-red text-lg rounded-md mr-4 px-3 py-1"
+                onClick={() => setDeleteIsOpen(true)}
+              >
+                <FaTrashAlt />
+              </div>
+              <input
+                type="submit"
+                value={isSubmitting ? "Saving..." : "Save"}
+                disabled={!isValid}
+                className={`w-full sm:w-fit text-white bg-primary-color py-1 px-6 rounded-md text-lg cursor-pointer disabled:bg-opacity-50 disabled:cursor-default ${
+                  isSubmitting ? "bg-opacity-50" : ""
+                }`}
+              />
+            </div>
           </div>
 
           <div>
@@ -159,17 +177,53 @@ const BlogEditComponent = ({ blogData }) => {
       >
         <div className="px-4 py-6">
           <div className="mb-12">
-            <h2 className="font-bold text-lg">Are you sure you want to delete?</h2>
+            <h2 className="font-bold text-lg">
+              Are you sure you want to delete?
+            </h2>
             <p>Your Blog will be deleted from the database</p>
           </div>
           <div className="flex justify-end">
-            <button className="bg-primary-color text-white px-4 py-2 rounded-lg mr-2" onClick={() => setDeleteIsOpen(false)}>Cancel</button>
+            <button
+              className="bg-primary-color text-white px-4 py-2 rounded-lg mr-2"
+              onClick={() => setDeleteIsOpen(false)}
+            >
+              Cancel
+            </button>
             <button
               type="button"
               className="bg-red text-white px-4 py-2 rounded-lg"
               onClick={deleteBlog}
             >
               <FaTrashAlt />
+            </button>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={closeQuery}
+        className="bg-white w-[30%] rounded-lg"
+        overlayClassName="bg-primary-color bg-opacity-20 flex justify-center items-center absolute top-0 bottom-0 right-0 left-0"
+      >
+        <div className="px-4 py-6">
+          <div className="mb-12">
+            <h2 className="font-bold text-lg">Do you want to stop editing?</h2>
+            <p>Your changes will not be saved</p>
+          </div>
+          <div className="flex justify-end">
+            <button
+              type="button"
+              className="bg-red text-white px-4 py-2 rounded-lg mr-2"
+              onClick={redirect}
+            >
+              Close
+            </button>
+
+            <button
+              className="bg-primary-color text-white px-4 py-2 rounded-lg"
+              onClick={() => setCloseQuery(false)}
+            >
+              Continue Editing
             </button>
           </div>
         </div>
