@@ -1,15 +1,18 @@
+"use client"
+
 import MessageDetails from "@components/adminPanel/dashboard/messages/MessageDetails";
-import messagesArray from "@utils/messages";
+import MessagesContext from "@utils/context/MessagesContext";
+import { useContext } from "react";
 
 const MessageView = ({ params }) => {
-  // const message = messagesArray.find(msg => msg.id === Number(id));
-  const messageList = messagesArray;
+  const { messages, loading } = useContext(MessagesContext);
   const id = params.id;
-  const message = messageList.find((msg) => msg.id === Number(id));
 
+  const message = messages.find(msg => msg.id === id);
+  
   return (
     <>
-      <MessageDetails messageData={message} />
+      <MessageDetails messageData={message} loading={loading} />
     </>
   );
 };

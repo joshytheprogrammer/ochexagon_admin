@@ -22,12 +22,14 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
   const handleClickOutside = (e) => {
     if (!sidebarRef.current.contains(e.target)) {
       isOpen && setIsOpen(false);
+    } else {
+      isOpen && setIsOpen(true);
     }
   }
 
   return (
     <aside
-      className={`bg-primary-color text-white h-full w-[50%] sm:w-[30%] md:w-[25%] lg:w-[20%] xl:w-[15%] fixed lg:static transition-transform duration-500 ease-linear ${!isOpen ? "translate-x-[-100%]" : "translate-x-0"} lg:translate-x-0`}
+      className={`bg-primary-color text-white h-full w-[50%] sm:w-[30%] md:w-[25%] lg:w-[20%] xl:w-[15%] fixed z-[99] lg:static transition-transform duration-500 ease-linear ${!isOpen ? "translate-x-[-100%]" : "translate-x-0"} lg:translate-x-0`}
       ref={sidebarRef}
     >
       <div className="flex flex-row justify-between items-center m-4 mb-12 mr-3">

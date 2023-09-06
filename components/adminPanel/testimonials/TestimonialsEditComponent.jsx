@@ -12,8 +12,8 @@ const TestimonialsEditComponent = () => {
   const requiredMsg = "This Field is required";
 
   return (
-    <div className="h-full w-full flex flex-row md:items-center justify-center lg:justify-between overflow-hidden">
-      <form action="" className="w-full h-full pr-2 md:w-[95%] lg:w-[40%] overflow-none scrollable-content">
+    <div className="h-full w-full flex flex-row md:items-center justify-center lg:justify-between overflow-auto scrollable-content">
+      <form action="" className="w-full h-full pr-2 md:w-[95%] lg:w-[40%] overflow-none">
         <div className="input-container">
           <label htmlFor="">Name</label>
           <input
