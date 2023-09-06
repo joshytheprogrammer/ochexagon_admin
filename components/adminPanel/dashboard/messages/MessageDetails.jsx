@@ -11,19 +11,19 @@ const MessageDetails = ({ messageData, loading }) => {
           <div>
             <div className="flex flex-row justify-between">
               <h1 className="text-lg mo-sm:text-[25px] font-bold">
-                {messageData.senderName}
+                {messageData.data.senderName}
               </h1>
 
               <div className="font-semibold">
-                {toDate(toDateTime(messageData.timestamp))} at{" "}
-                {toTime(toDateTime(messageData.timestamp))}
+                {toDate(toDateTime(messageData.data.timestamp))} at{" "}
+                {toTime(toDateTime(messageData.data.timestamp))}
               </div>
             </div>
             <div className="text-sm mo-sm:text-lg mt-4 mb-12">
-              <div className="font-bold">{messageData.email}</div>
+              <div className="font-bold">{messageData.data.email}</div>
             </div>
             <div className="mt-2">
-              {messageData.messageSent.split("\n").map((line, index) => (
+              {messageData.data.messageSent.split("\n").map((line, index) => (
                 <p key={index} className="mb-4">
                   {line}
                 </p>
@@ -33,7 +33,7 @@ const MessageDetails = ({ messageData, loading }) => {
 
           <div className="w-full flex justify-end">
             <Link
-              href={`mailto:${messageData.email}`}
+              href={`mailto:${messageData.data.email}`}
               className="bg-primary-color text-white text-md font-semibold flex items-center rounded-md px-4 py-2"
             >
               <MdEmail className="mr-2" />
