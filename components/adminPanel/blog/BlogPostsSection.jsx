@@ -69,7 +69,7 @@ const BlogSectionComponent = () => {
                   <td className="px-3 py-2 h-fit">{post.data.title}</td>
                   <td className="px-3 py-2 h-fit">Owner</td>
                   <td className="px-3 py-2 h-fit">
-                    {displayDateOrTime(post.data.dateCreated)}
+                    {displayDateOrTime(post.data.lastModified)}
                   </td>
                 </tr>
               ))}
