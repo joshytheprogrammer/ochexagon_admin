@@ -1,9 +1,9 @@
-import TestimonialsEditComponent from "@components/adminPanel/testimonials/TestimonialsEditComponent";
+import NewTestimonialsComponent from "@components/adminPanel/testimonials/NewTestimonialsComponent";
 
 const NewTestimonial = () => {
   return (
     <>
-      <TestimonialsEditComponent />
+      <NewTestimonialsComponent />
     </>
   );
 }
