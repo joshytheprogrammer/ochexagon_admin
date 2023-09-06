@@ -24,7 +24,9 @@ const BlogSectionComponent = () => {
     <div className="w-full h-full overflow-hidden">
       <div className="w-full flex flex-col-reverse mo-lg:flex-row mo-lg:justify-between mb-6">
         <div className="flex">
-          <div className="datalength-btn px-3 mr-4">20 Posts</div>
+          <div className="datalength-btn px-3 mr-4">{filteredData.length == 1
+            ? `${filteredData.length} Post`
+            : `${filteredData.length} Posts`}</div>
           <Link href={`/blog/posts/new`} className="adddata-btn rounded-[4px]">
             Add Post
           </Link>
