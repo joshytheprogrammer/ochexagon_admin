@@ -9,6 +9,7 @@ import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { firestore, storage } from "@utils/firebase/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import Modal from "react-modal";
+import { FaTrashAlt } from "react-icons/fa";
 
 const TestimonialsEditComponent = ({ testimonialsData }) => {
   const {
@@ -24,17 +25,17 @@ const TestimonialsEditComponent = ({ testimonialsData }) => {
 
   const router = useRouter();
 
-  // const [deleteIsOpen, setDeleteIsOpen] = useState(false);
+  const [deleteIsOpen, setDeleteIsOpen] = useState(false);
 
   const redirect = () => {
     router.push("/testimonials");
     router.refresh();
   };
 
-  // const deleteBlog = async () => {
-  //   redirect();
-  //   await deleteDoc(doc(firestore, "", testimonialsData.id));
-  // };
+  const deleteTestimonial = async () => {
+    redirect();
+    await deleteDoc(doc(firestore, "testimonials", testimonialsData.id));
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -120,14 +121,22 @@ const TestimonialsEditComponent = ({ testimonialsData }) => {
             ></textarea>
           </div>
 
-          <input
-            type="submit"
-            value="Save"
-            disabled={!isValid}
-            className={`w-full text-white cursor-pointer bg-primary-color py-2 px-6 rounded-md text-lg disabled:bg-opacity-50 ${
-              isSubmitting ? "bg-opacity-50" : ""
-            }`}
-          />
+          <div className="flex justify-end">
+            <div
+              className="text-white flex items-center justify-center cursor-pointer bg-red text-lg rounded-md mr-4 px-3 py-1"
+              onClick={() => setDeleteIsOpen(true)}
+            >
+              <FaTrashAlt />
+            </div>
+            <input
+              type="submit"
+              value="Save"
+              disabled={!isValid}
+              className={`text-white cursor-pointer bg-primary-color py-2 px-6 rounded-md text-lg disabled:bg-opacity-50 ${
+                isSubmitting ? "bg-opacity-50" : ""
+              }`}
+            />
+          </div>
         </form>
       )}
 
@@ -176,6 +185,36 @@ const TestimonialsEditComponent = ({ testimonialsData }) => {
           >
             View all Testimonials
           </button>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={deleteIsOpen}
+        className="bg-white w-[80%] mo-lg:w-[60%] md:w-[50%] lg:w-[30%] rounded-lg"
+        overlayClassName="bg-primary-color bg-opacity-20 flex justify-center items-center absolute top-0 bottom-0 right-0 left-0"
+      >
+        <div className="px-4 py-6">
+          <div className="mb-12">
+            <h2 className="font-bold text-lg">
+              Are you sure you want to delete?
+            </h2>
+            <p>Your Blog will be deleted from the database</p>
+          </div>
+          <div className="flex justify-end">
+            <button
+              className="bg-primary-color text-white px-4 py-2 rounded-lg mr-2"
+              onClick={() => setDeleteIsOpen(false)}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              className="bg-red text-white px-4 py-2 rounded-lg"
+              onClick={deleteTestimonial}
+            >
+              <FaTrashAlt />
+            </button>
+          </div>
         </div>
       </Modal>
     </div>
