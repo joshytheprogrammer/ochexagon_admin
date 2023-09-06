@@ -20,7 +20,7 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
   const sidebarRef = useRef(null);
 
   const handleClickOutside = (e) => {
-    if (!sidebarRef.current.contains(e.target)) {
+    if (sidebarRef && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
       isOpen && setIsOpen(false);
     } else {
       isOpen && setIsOpen(true);
