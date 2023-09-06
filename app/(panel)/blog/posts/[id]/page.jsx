@@ -1,10 +1,30 @@
+"use client"
+
 import BlogEditComponent from "@components/adminPanel/blog/posts/BlogEditComponent";
-import blogPostArray from "@utils/lists/blogposts";
+import BlogPostsContext from "@utils/context/BlogPostsContext";
+import { fetchBlogPosts } from "@utils/firebase/utils";
+import { useContext, useEffect, useState } from "react";
 
 const BlogEditPage = ({ params }) => {
-  const blogPostList = blogPostArray;
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await fetchBlogPosts();
+        setBlogPosts(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    fetchData();
+  }, []);
+
   const id = params.id;
-  const post = blogPostList.find((blogPost) => blogPost.id === Number(id));
+
+  const post = blogPosts.find((blogPost) => blogPost.id === id);
   
   return (
     <>
