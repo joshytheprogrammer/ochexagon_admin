@@ -5,48 +5,56 @@ import { MdClose } from "react-icons/md";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { auth, logOut } from "@utils/firebase/firebase";
+import { auth } from "@utils/firebase/firebase";
+import { signOut } from "firebase/auth";
 
 const SidePanel = ({ isOpen, setIsOpen }) => {
   const route = usePathname();
 
   const closeMenu = () => {
     isOpen && setIsOpen(false);
-  }
+  };
 
   useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true)
-  })
+    document.addEventListener("click", handleClickOutside, true);
+  });
 
   const sidebarRef = useRef(null);
 
   const handleClickOutside = (e) => {
-    if (sidebarRef && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+    if (
+      sidebarRef &&
+      sidebarRef.current &&
+      !sidebarRef.current.contains(e.target)
+    ) {
       isOpen && setIsOpen(false);
     } else {
       isOpen && setIsOpen(true);
     }
-  }
+  };
 
   const router = useRouter();
 
-  const handleSignOut = async () => {
-    try {
-      await logOut();
-      router.push('/')
-    } catch (error) {
-      console.log(error);
-    }
-  } 
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        router.push('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <aside
-      className={`bg-primary-color text-white h-full w-[50%] sm:w-[30%] md:w-[25%] lg:w-[20%] xl:w-[15%] fixed z-[99] lg:static transition-transform duration-500 ease-linear ${!isOpen ? "translate-x-[-100%]" : "translate-x-0"} lg:translate-x-0`}
+      className={`bg-primary-color text-white h-full w-[50%] sm:w-[30%] md:w-[25%] lg:w-[20%] xl:w-[15%] fixed z-[99] lg:static transition-transform duration-500 ease-linear ${
+        !isOpen ? "translate-x-[-100%]" : "translate-x-0"
+      } lg:translate-x-0`}
       ref={sidebarRef}
     >
       <div className="flex flex-row justify-between items-center m-4 mb-12 mr-3">
         <h2 className="uppercase font-semibold text-2xl">menu</h2>
-        
+
         <button onClick={closeMenu} className="text-2xl lg:hidden">
           <MdClose />
         </button>
@@ -56,8 +64,14 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           <Link
             href="/dashboard"
             className={`sidebar-links ${
-              route === "/dashboard" || route.startsWith("/dashboard") ? "text-primary-color" : "text-white"
-            } ${route === "/dashboard" || route.startsWith("/dashboard") ? "bg-white" : ""}`}
+              route === "/dashboard" || route.startsWith("/dashboard")
+                ? "text-primary-color"
+                : "text-white"
+            } ${
+              route === "/dashboard" || route.startsWith("/dashboard")
+                ? "bg-white"
+                : ""
+            }`}
           >
             <BiSolidDashboard />
             <span>Dashboard</span>
@@ -65,7 +79,9 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           <Link
             href="/blog"
             className={`sidebar-links ${
-              route === "/blog" || route.startsWith("/blog") ?  "text-primary-color bg-white" : "text-white"
+              route === "/blog" || route.startsWith("/blog")
+                ? "text-primary-color bg-white"
+                : "text-white"
             }`}
           >
             <BiSolidDashboard />
@@ -74,7 +90,9 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           <Link
             href="/testimonials"
             className={`sidebar-links ${
-              route === "/testimonials" || route.startsWith("/testimonials") ? "text-primary-color bg-white" : "text-white"
+              route === "/testimonials" || route.startsWith("/testimonials")
+                ? "text-primary-color bg-white"
+                : "text-white"
             }`}
           >
             <BiSolidDashboard />
@@ -82,7 +100,10 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           </Link>
         </div>
         <hr className="w-[80%] self-center" />
-        <button onClick={handleSignOut} className="text-white w-fit flex items-center mt-6 ml-4">
+        <button
+          onClick={handleSignOut}
+          className="text-white w-fit flex items-center mt-6 ml-4"
+        >
           <BiSolidDashboard className="text-[25px] mr-2" />
           <span>Log Out</span>
         </button>
