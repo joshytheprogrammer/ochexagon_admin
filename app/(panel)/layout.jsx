@@ -14,19 +14,12 @@ const AdminPanelLayout = ({ children }) => {
     !isOpen && setIsOpen(true);
   };
 
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // onAuthStateChanged(auth, (user) => {
-  //   const userid = user.uid;
-  // })
-
   const user = auth.currentUser;
   const router = useRouter();
 
   if (!user) {
     router.push("/");
   } else {
-    console.log("Logged in");
     return (
       <div className="adminPanel bg-blueish-white w-full flex flex-col h-screen">
         <Header />
