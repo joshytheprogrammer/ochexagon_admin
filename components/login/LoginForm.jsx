@@ -24,6 +24,7 @@ const LoginForm = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(user.displayName)
         router.push("/dashboard");
         setisPending(false);
       })
