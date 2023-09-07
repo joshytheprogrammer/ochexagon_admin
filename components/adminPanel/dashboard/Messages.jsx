@@ -2,12 +2,11 @@
 
 import MessagesContext from "@utils/context/MessagesContext";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { firestore } from "@utils/firebase/firebase";
 import { displayDateOrTime } from "@utils/firebase/utils";
-import { HiOutlineSearch } from "react-icons/hi";
-import useSearchDynamic from "@utils/customHooks/useSearchDynamic";
+
 
 const Messages = () => {
   const { messages, loading } = useContext(MessagesContext);
