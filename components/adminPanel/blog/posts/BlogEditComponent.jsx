@@ -161,8 +161,8 @@ const BlogEditComponent = ({ blogData }) => {
 
       <Modal
         isOpen={isSubmitted}
-        className="bg-white w-[30%] rounded-lg"
-        overlayClassName="bg-primary-color bg-opacity-20 flex justify-center items-center w-[80%] mo-lg:w-[60%] md:w-[50%] lg:w-[30%] absolute top-0 bottom-0 right-0 left-0"
+        className="bg-white w-[80%] mo-lg:w-[60%] md:w-[50%] lg:w-[30%] rounded-lg"
+        overlayClassName="bg-primary-color bg-opacity-20 flex justify-center items-center absolute top-0 bottom-0 right-0 left-0"
       >
         <div className="px-4 py-6">
           <div className="mb-12">
@@ -181,8 +181,8 @@ const BlogEditComponent = ({ blogData }) => {
 
       <Modal
         isOpen={deleteIsOpen}
-        className="bg-white w-[30%] rounded-lg"
-        overlayClassName="bg-primary-color bg-opacity-20 flex justify-center items-center w-[80%] mo-lg:w-[60%] md:w-[50%] lg:w-[30%] absolute top-0 bottom-0 right-0 left-0"
+        className="bg-white w-[80%] mo-lg:w-[60%] md:w-[50%] lg:w-[30%] rounded-lg"
+        overlayClassName="bg-primary-color bg-opacity-20 flex justify-center items-center absolute top-0 bottom-0 right-0 left-0"
       >
         <div className="px-4 py-6">
           <div className="mb-12">
