@@ -31,12 +31,13 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
   const router = useRouter();
 
   const handleSignOut = async () => {
-    logOut(auth).then(() => {
-      router.push('/');
-    }).catch((error) => {
+    try {
+      await logOut();
+      router.push('/')
+    } catch (error) {
       console.log(error);
-    });
-  }
+    }
+  } 
 
   return (
     <aside
