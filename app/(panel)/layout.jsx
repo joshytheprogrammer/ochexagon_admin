@@ -19,6 +19,7 @@ const AdminPanelLayout = ({ children }) => {
 
   if (!user) {
     router.push("/");
+    return null;
   } else {
     return (
       <div className="adminPanel bg-blueish-white w-full flex flex-col h-screen">
