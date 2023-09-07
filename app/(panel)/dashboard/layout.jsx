@@ -2,6 +2,7 @@
 
 import MessagesContext from "@utils/context/MessagesContext";
 import { firestore } from "@utils/firebase/firebase";
+import { fetchMessages } from "@utils/firebase/utils";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
@@ -14,19 +15,37 @@ const DashboardLayout = ({ children }) => {
 
   useEffect(() => {
     async function fetchData() {
-      setLoading(true);
+      try {
+        const data = await fetchMessages();
+        setMessages(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    fetchData();
+  }, []);
 
+  useEffect(() => {
+    async function fetchData() {
       try {
         const unsubscribe = onSnapshot(q, (snapshot) => {
           const updatedData = snapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
           }));
+
+          const data = []
+
+          snapshot.forEach((doc) => {
+            data.push(doc.data().isRead);
+        });
+
           setMessages(updatedData);
           setLoading(false);
         });
     
-        return () => unsubscribe();
+        // unsubscribe();
       } catch (error) {
         console.log(error.message);
         setLoading(false);
