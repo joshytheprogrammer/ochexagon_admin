@@ -3,8 +3,9 @@
 import { BiSolidDashboard } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { auth, logOut } from "@utils/firebase/firebase";
 
 const SidePanel = ({ isOpen, setIsOpen }) => {
   const route = usePathname();
@@ -25,6 +26,16 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
     } else {
       isOpen && setIsOpen(true);
     }
+  }
+
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    logOut(auth).then(() => {
+      router.push('/');
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   return (
@@ -70,10 +81,10 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           </Link>
         </div>
         <hr className="w-[80%] self-center" />
-        <Link href="/" className="text-white w-fit flex items-center mt-6 ml-4">
+        <button onClick={handleSignOut} className="text-white w-fit flex items-center mt-6 ml-4">
           <BiSolidDashboard className="text-[25px] mr-2" />
           <span>Log Out</span>
-        </Link>
+        </button>
       </div>
     </aside>
   );

@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, signOut } from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
@@ -16,6 +16,7 @@ const app = initializeApp(firebaseConfig);
 
 const firestore = getFirestore(app);
 const auth = getAuth(app);
+const logOut = signOut(app);
 const storage = getStorage(app);
 
-export { firestore, auth, storage }
+export { firestore, auth, storage, logOut }
