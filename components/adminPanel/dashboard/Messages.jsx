@@ -131,7 +131,7 @@ const Messages = () => {
 
               <div className="text-sm flex justify-between">
                 <p className="truncate-text w-[75%]">{message.messageSent}</p>
-                <span>{displayDateOrTime(message.timestamp)}</span>
+                <span>{message.timestamp && displayDateOrTime(message.timestamp)}</span>
               </div>
             </Link>
           ))}

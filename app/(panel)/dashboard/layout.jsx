@@ -45,7 +45,7 @@ const DashboardLayout = ({ children }) => {
           setLoading(false);
         });
     
-        // unsubscribe();
+        return () => unsubscribe();
       } catch (error) {
         console.log(error.message);
         setLoading(false);
