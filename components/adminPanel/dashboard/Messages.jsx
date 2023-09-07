@@ -2,14 +2,23 @@
 
 import MessagesContext from "@utils/context/MessagesContext";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { firestore } from "@utils/firebase/firebase";
 import { displayDateOrTime } from "@utils/firebase/utils";
 import { HiOutlineSearch } from "react-icons/hi";
+import useSearchDynamic from "@utils/customHooks/useSearchDynamic";
 
 const Messages = () => {
   const { messages, loading } = useContext(MessagesContext);
+  const [searchInput, setSearchInput] = useState("");
+
+  // const { filteredData } = useSearchDynamic(
+  //   messages,
+  //   searchInput,
+  //   "senderName",
+  //   "messageSent"
+  // );
 
   const unReadMessages = messages.filter((msg) => msg.isRead == false);
 
@@ -35,7 +44,10 @@ const Messages = () => {
 
         <div className="w-full mb-3 mo-lg:mb-0 mo-lg:w-[35%] relative">
           <input type="text" className="search-bar w-full pl-[55px]" />
-          <HiOutlineSearch className="text-2xl absolute left-[20px] top-[6px] text-primary-color" />
+          <HiOutlineSearch
+            className="text-2xl absolute left-[20px] top-[6px] text-primary-color"
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
         </div>
       </div>
 
