@@ -35,7 +35,7 @@ const AdminPanelLayout = ({ children }) => {
   //   router.push("/");
   // } else {
   return (
-    <div>
+    <div className="w-full">
       {isAuthenticated ? (
         <div className="adminPanel bg-blueish-white w-full flex flex-col h-screen">
           <Header />
