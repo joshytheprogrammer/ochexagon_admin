@@ -5,7 +5,7 @@ import MenuBtn from "@components/adminPanel/MenuBtn";
 import SidePanel from "@components/adminPanel/SidePanel";
 import { auth } from "@utils/firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const AdminPanelLayout = ({ children }) => {
@@ -23,7 +23,7 @@ const AdminPanelLayout = ({ children }) => {
     if (user) {
       console.log('You are signed in');
     } else {
-      // router.push('/');
+      // router.push('/')
       console.log('You need to sign in')
     }
   })
