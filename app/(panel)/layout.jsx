@@ -3,8 +3,9 @@
 import Header from "@components/adminPanel/Header";
 import MenuBtn from "@components/adminPanel/MenuBtn";
 import SidePanel from "@components/adminPanel/SidePanel";
-import { auth } from "@utils/firebase/firebase";
-import { useRouter } from "next/navigation";
+// import { auth } from "@utils/firebase/firebase";
+// import { onAuthStateChanged } from "firebase/auth";
+// import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const AdminPanelLayout = ({ children }) => {
@@ -14,13 +15,18 @@ const AdminPanelLayout = ({ children }) => {
     !isOpen && setIsOpen(true);
   };
 
-  const user = auth.currentUser;
-  const router = useRouter();
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  if (!user) {
-    router.push("/");
-    return null;
-  } else {
+  // onAuthStateChanged(auth, (user) => {
+  //   const userid = user.uid;
+  // })
+
+  // const user = auth.currentUser;
+  // const router = useRouter();
+
+  // if (!user) {
+  //   router.push("/");
+  // } else {
     return (
       <div className="adminPanel bg-blueish-white w-full flex flex-col h-screen">
         <Header />
@@ -33,7 +39,7 @@ const AdminPanelLayout = ({ children }) => {
         </div>
       </div>
     );
-  }
+  // }
 };
 
 export default AdminPanelLayout;
