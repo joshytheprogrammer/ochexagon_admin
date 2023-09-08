@@ -3,9 +3,9 @@
 import Header from "@components/adminPanel/Header";
 import MenuBtn from "@components/adminPanel/MenuBtn";
 import SidePanel from "@components/adminPanel/SidePanel";
-// import { auth } from "@utils/firebase/firebase";
-// import { onAuthStateChanged } from "firebase/auth";
-// import { useRouter } from "next/navigation";
+import { auth } from "@utils/firebase/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const AdminPanelLayout = ({ children }) => {
@@ -16,13 +16,19 @@ const AdminPanelLayout = ({ children }) => {
   };
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const router = useRouter();
 
-  // onAuthStateChanged(auth, (user) => {
-  //   const userid = user.uid;
-  // })
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log('You are signed in');
+    } else {
+      router.push('/');
+      console.log('You need to sign in')
+    }
+  })
 
   // const user = auth.currentUser;
-  // const router = useRouter();
 
   // if (!user) {
   //   router.push("/");
