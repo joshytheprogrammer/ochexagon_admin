@@ -21,7 +21,7 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     setisPending(true);
 
-    signInWithEmailAndPassword(auth, data.email, data.password)
+    await signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user.displayName)

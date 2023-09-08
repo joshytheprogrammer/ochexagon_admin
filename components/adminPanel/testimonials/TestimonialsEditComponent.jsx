@@ -91,7 +91,7 @@ const TestimonialsEditComponent = ({ testimonialsData }) => {
       >
         <IoMdClose />
       </div>
-      <div className="h-full w-full flex flex-row md:items-center justify-center lg:justify-between overflow-auto scrollable-content">
+      <div className="h-[90%] w-full flex flex-row md:items-center justify-center lg:justify-between overflow-auto scrollable-content">
         {testimonialsData && (
           <form
             action=""
