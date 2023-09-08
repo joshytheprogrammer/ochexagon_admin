@@ -80,7 +80,7 @@ const NewTestimonialsComponent = () => {
       >
         <IoMdClose />
       </div>
-      <div className="h-full w-full flex flex-row md:items-center justify-center lg:justify-between overflow-auto scrollable-content">
+      <div className="h-[90%] w-full flex flex-row md:items-center justify-center lg:justify-between overflow-auto scrollable-content">
         <form
           action=""
           className="w-full h-full pr-2 md:w-[95%] lg:w-[40%] overflow-none"
