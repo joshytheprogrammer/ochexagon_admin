@@ -16,14 +16,14 @@ const AdminPanelLayout = ({ children }) => {
   };
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
 
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       console.log('You are signed in');
     } else {
-      router.push('/');
+      // router.push('/');
       console.log('You need to sign in')
     }
   })
