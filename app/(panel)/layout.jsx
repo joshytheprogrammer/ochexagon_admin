@@ -3,10 +3,9 @@
 import Header from "@components/adminPanel/Header";
 import MenuBtn from "@components/adminPanel/MenuBtn";
 import SidePanel from "@components/adminPanel/SidePanel";
+import NotSignedIn from "@components/login/notSignedIn/NotSignedIn";
 import { auth } from "@utils/firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import Link from "next/link";
-// import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const AdminPanelLayout = ({ children }) => {
@@ -49,9 +48,7 @@ const AdminPanelLayout = ({ children }) => {
           </div>
         </div>
       ) : (
-        <div>
-          You are not yet signed in! <Link href="/" className="text-primary-color underline">Go to login page</Link>
-        </div>
+        <NotSignedIn />
       )}
     </div>
   );
