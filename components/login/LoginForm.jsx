@@ -4,7 +4,11 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { auth } from "@utils/firebase/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  browserLocalPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { useState } from "react";
 
 const LoginForm = () => {
@@ -21,18 +25,24 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     setisPending(true);
 
-    await signInWithEmailAndPassword(auth, data.email, data.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user.displayName)
-        router.push("/dashboard");
-        setisPending(false);
+    await setPersistence(auth, browserLocalPersistence)
+      .then(() => {
+        return signInWithEmailAndPassword(auth, data.email, data.password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user.displayName);
+            router.push("/dashboard");
+            setisPending(false);
+          })
+          .catch((error) => {
+            setisPending(false);
+            const errorCode = error.code;
+            errorCode === "auth/wrong-password" ||
+              ("auth/user-not-found" && setError("Invalid Email or Password"));
+          });
       })
       .catch((error) => {
-        setisPending(false);
-        const errorCode = error.code;
-        errorCode === "auth/wrong-password" ||
-          ("auth/user-not-found" && setError("Invalid Email or Password"));
+        console.log(error.code);
       });
   };
 
@@ -63,7 +73,11 @@ const LoginForm = () => {
           <input
             type="text"
             placeholder="Email"
-            className={`${errors.email ? 'border-red focus:border-red' : 'border-darkGray focus:border-primary-color'}`}
+            className={`${
+              errors.email
+                ? "border-red focus:border-red"
+                : "border-darkGray focus:border-primary-color"
+            }`}
             {...register("email", {
               required: "Email is required",
               pattern: {
@@ -80,7 +94,7 @@ const LoginForm = () => {
           <input
             type="password"
             placeholder="Password"
-            className={`${errors.email ? 'border-red' : 'border-darkGray'}`}
+            className={`${errors.email ? "border-red" : "border-darkGray"}`}
             {...register("password", { required: "Password is required" })}
           />
           {errors.password && <p>{errors.password.message}</p>}
@@ -89,8 +103,10 @@ const LoginForm = () => {
         <input
           disabled={isPending}
           type="submit"
-          value={!isPending ? 'Sign in' : 'Signing in...'}
-          className={`bg-primary-color text-white cursor-pointer transition-all ease-linear duration-200 hover:opacity-90 font-semibold text-center w-full block rounded-[4px] p-2 mt-10 ${isPending ? 'bg-opacity-70' : ''}`}
+          value={!isPending ? "Sign in" : "Signing in..."}
+          className={`bg-primary-color text-white cursor-pointer transition-all ease-linear duration-200 hover:opacity-90 font-semibold text-center w-full block rounded-[4px] p-2 mt-10 ${
+            isPending ? "bg-opacity-70" : ""
+          }`}
         />
       </div>
     </form>

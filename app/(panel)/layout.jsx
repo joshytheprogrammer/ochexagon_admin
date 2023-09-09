@@ -6,7 +6,7 @@ import SidePanel from "@components/adminPanel/SidePanel";
 import NotSignedIn from "@components/login/notSignedIn/NotSignedIn";
 import { auth } from "@utils/firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const AdminPanelLayout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,16 +18,18 @@ const AdminPanelLayout = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   // const router = useRouter();
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("You are signed in");
-      setIsAuthenticated(true);
-    } else {
-      // router.push('/')
-      console.log("You need to sign in");
-      setIsAuthenticated(false);
-    }
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("You are signed in");
+        setIsAuthenticated(true);
+      } else {
+        // router.push('/')
+        console.log("You need to sign in");
+        setIsAuthenticated(false);
+      }
+    });
+  }, []);
 
   // const user = auth.currentUser;
 
