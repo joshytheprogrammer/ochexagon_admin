@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { auth } from "@utils/firebase/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 const LoginForm = () => {
   const {
@@ -14,26 +14,28 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  const router = useRouter();
+  // const router = useRouter();
   const [error, setError] = useState(null);
   const [isPending, setisPending] = useState(false);
 
   const onSubmit = async (data) => {
-    setisPending(true);
+    // setisPending(true);
 
-    signInWithEmailAndPassword(auth, data.email, data.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user.displayName);
-        router.push("/dashboard");
-        setisPending(false);
-      })
-      .catch((error) => {
-        setisPending(false);
-        const errorCode = error.code;
-        errorCode === "auth/wrong-password" ||
-          ("auth/user-not-found" && setError("Invalid Email or Password"));
-      });
+    // signInWithEmailAndPassword(auth, data.email, data.password)
+    //   .then((userCredential) => {
+    //     const user = userCredential.user;
+    //     console.log(user.displayName);
+    //     router.push("/dashboard");
+    //     setisPending(false);
+    //   })
+    //   .catch((error) => {
+    //     setisPending(false);
+    //     const errorCode = error.code;
+    //     errorCode === "auth/wrong-password" ||
+    //       ("auth/user-not-found" && setError("Invalid Email or Password"));
+    //   });
+
+    signIn('credentials', {email: data.email, password: data.password, redirect: true, callbackUrl: '/dashboard'})
   };
 
   return (
@@ -100,7 +102,7 @@ const LoginForm = () => {
             isPending ? "bg-opacity-70" : ""
           }`}
         />
-      </div>
+      </div> 
     </form>
   );
 };

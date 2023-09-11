@@ -1,20 +1,23 @@
-const NextAuth = require("next-auth");
-const CredentialsProvider = require("next-auth/providers/credentials");
-const { signInWithEmailAndPassword } = require('firebase/auth');
-const { auth } = require("@/app/firebase");
+import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth from "next-auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@utils/firebase/firebase";
 
-const authOptions = {
-  // Configure one or more authentication providers
+const handler = NextAuth({
   pages: {
-    signIn: '/'
+    signIn: "/",
   },
   providers: [
     CredentialsProvider({
-      name: 'Credentials',
+      name: "Credentials",
       credentials: {},
       async authorize(credentials) {
         try {
-          const userCredential = await signInWithEmailAndPassword(auth, credentials.email || '', credentials.password || '');
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            credentials.email || "",
+            credentials.password || ""
+          );
           if (userCredential.user) {
             return userCredential.user;
           }
@@ -25,9 +28,10 @@ const authOptions = {
           const errorMessage = error.message;
           console.log(errorCode, errorMessage);
         }
-      }
-    })
+      },
+    }),
   ],
-};
+  
+});
 
-module.exports = NextAuth.default(authOptions);
+export { handler as GET }
