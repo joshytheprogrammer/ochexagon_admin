@@ -4,11 +4,7 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { auth } from "@utils/firebase/firebase";
-import {
-  browserLocalPersistence,
-  setPersistence,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 
 const LoginForm = () => {
@@ -25,24 +21,18 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     setisPending(true);
 
-    await setPersistence(auth, browserLocalPersistence)
-      .then(() => {
-        return signInWithEmailAndPassword(auth, data.email, data.password)
-          .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user.displayName);
-            router.push("/dashboard");
-            setisPending(false);
-          })
-          .catch((error) => {
-            setisPending(false);
-            const errorCode = error.code;
-            errorCode === "auth/wrong-password" ||
-              ("auth/user-not-found" && setError("Invalid Email or Password"));
-          });
+    signInWithEmailAndPassword(auth, data.email, data.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user.displayName);
+        router.push("/dashboard");
+        setisPending(false);
       })
       .catch((error) => {
-        console.log(error.code);
+        setisPending(false);
+        const errorCode = error.code;
+        errorCode === "auth/wrong-password" ||
+          ("auth/user-not-found" && setError("Invalid Email or Password"));
       });
   };
 
@@ -73,6 +63,7 @@ const LoginForm = () => {
           <input
             type="text"
             placeholder="Email"
+            name="email"
             className={`${
               errors.email
                 ? "border-red focus:border-red"
@@ -94,6 +85,7 @@ const LoginForm = () => {
           <input
             type="password"
             placeholder="Password"
+            name="password"
             className={`${errors.email ? "border-red" : "border-darkGray"}`}
             {...register("password", { required: "Password is required" })}
           />
