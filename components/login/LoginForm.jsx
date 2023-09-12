@@ -61,11 +61,10 @@ const LoginForm = () => {
 
       <div className="w-full mt-6 mb-11">
         <div className="form_field">
-          <label htmlFor="">Email</label>
+          <label>Email</label>
           <input
             type="text"
             placeholder="Email"
-            name="email"
             className={`${
               errors.email
                 ? "border-red focus:border-red"
@@ -83,11 +82,10 @@ const LoginForm = () => {
         </div>
 
         <div className="form_field">
-          <label htmlFor="">Password</label>
+          <label>Password</label>
           <input
             type="password"
             placeholder="Password"
-            name="password"
             className={`${errors.email ? "border-red" : "border-darkGray"}`}
             {...register("password", { required: "Password is required" })}
           />
