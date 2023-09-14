@@ -1,12 +1,11 @@
 "use client";
 
-import { BiSolidDashboard } from "react-icons/bi";
+import { BiSolidDashboard, BiLogOut } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { auth } from "@utils/firebase/firebase";
-import { signOut } from "firebase/auth";
+import { signOut } from "next-auth/react";
 
 const SidePanel = ({ isOpen, setIsOpen }) => {
   const route = usePathname();
@@ -33,16 +32,11 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
     }
   };
 
-  const router = useRouter();
-
   const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        router.push('/');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    signOut({ 
+      redirect: true,
+      callbackUrl: "/"
+    })
   };
 
   return (
@@ -104,7 +98,7 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           onClick={handleSignOut}
           className="text-white w-fit flex items-center mt-6 ml-4"
         >
-          <BiSolidDashboard className="text-[25px] mr-2" />
+          <BiLogOut className="text-[25px] mr-2" />
           <span>Log Out</span>
         </button>
       </div>

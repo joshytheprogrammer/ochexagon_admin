@@ -23,6 +23,10 @@ module.exports = {
         'mo-sm': '350px',
         'mo-md': '475px',
         'mo-lg': '576px'
+      },
+
+      backgroundImage: {
+        'login-bg': "url('../public/assets/bg.png')"
       }
     }
   },

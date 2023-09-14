@@ -1,13 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import profilePicEmpty from "@public/assets/person-icon.svg";
+// import Image from "next/image";
+// import profilePicEmpty from "@public/assets/person-icon.svg";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
-import { firestore, storage } from "@utils/firebase/firebase";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { firestore } from "@utils/firebase/firebase";
 import Modal from "react-modal";
 import { FaTrashAlt } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
@@ -29,8 +28,8 @@ const TestimonialsEditComponent = ({ testimonialsData }) => {
   const [deleteIsOpen, setDeleteIsOpen] = useState(false);
   const [closeQuery, setCloseQuery] = useState(false);
 
-  const redirect = () => {
-    router.push("/testimonials");
+  const redirect = async () => {
+    await router.push("/testimonials");
     router.refresh();
   };
 
@@ -65,13 +64,13 @@ const TestimonialsEditComponent = ({ testimonialsData }) => {
         lastModified: currentDate,
       };
 
-      const profileImageRef = ref(
-        storage,
-        `testimonialProfileImages/${data.profileImage[0].name}`
-      );
-      await uploadBytes(profileImageRef, data.profileImage[0]);
-      const profileImageUrl = await getDownloadURL(profileImageRef);
-      modifiedData.profileImage = profileImageUrl;
+      // const profileImageRef = ref(
+      //   storage,
+      //   `testimonialProfileImages/${data.profileImage[0].name}`
+      // );
+      // await uploadBytes(profileImageRef, data.profileImage[0]);
+      // const profileImageUrl = await getDownloadURL(profileImageRef);
+      // modifiedData.profileImage = profileImageUrl;
 
       await updateDoc(testimonialsRef, modifiedData);
       console.log(
@@ -107,14 +106,14 @@ const TestimonialsEditComponent = ({ testimonialsData }) => {
                 {...register("name", { required: requiredMsg })}
               />
             </div>
-            <div className="input-container">
+            {/* <div className="input-container">
               <label htmlFor="">Profile Image</label>
               <input
                 type="file"
                 accept="image*"
                 {...register("profileImage", { required: requiredMsg })}
               />
-            </div>
+            </div> */}
             <div className="input-container">
               <label htmlFor="">Location</label>
               <input
@@ -153,7 +152,7 @@ const TestimonialsEditComponent = ({ testimonialsData }) => {
           </form>
         )}
         <div className="w-[48%] p-6 xl:p-8 border-2 mb-8 lg:mb-4 drop-shadow-2xl rounded-2xl relative text-left h-fit hidden lg:block">
-          {watchedValues.profileImage && (
+          {/* {watchedValues.profileImage && (
             <Image
               src={
                 watchedValues.profileImage[0]
@@ -165,7 +164,7 @@ const TestimonialsEditComponent = ({ testimonialsData }) => {
               height={60}
               className="absolute w-[60px] aspect-square -top-[24px] -left-[30px] border-2 rounded-full block bg-darkGray"
             />
-          )}
+          )} */}
           <p className="max-w-full lg:text-md xl:text-lg break-words">
             {watchedValues.testimony ||
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus commodi ullam aspernatur! Officiis aliquid suscipit quibusdam unde quas doloremque vel voluptates quasi similique eius, voluptatum, hic ea. Distinctio, sed neque optio tempora odit laudantium a ad sit nostrum repudiandae! Ipsum?"}
