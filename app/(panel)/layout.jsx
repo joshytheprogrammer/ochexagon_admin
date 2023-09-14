@@ -3,6 +3,7 @@
 import Header from "@components/adminPanel/Header";
 import MenuBtn from "@components/adminPanel/MenuBtn";
 import SidePanel from "@components/adminPanel/SidePanel";
+
 import { useState } from "react";
 
 import { useSession } from 'next-auth/react';
@@ -15,7 +16,7 @@ const AdminPanelLayout = ({ children }) => {
     !isOpen && setIsOpen(true);
   };
 
-  const { status } = useSession()
+  const { status } = useSession();
 
   if (status === "loading") {
     return <p>Loading...</p>
