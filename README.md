@@ -27,7 +27,7 @@ Explore our comprehensive range of services:
 
 ## Website Information
 
-The ochexagon website was designed and built by         , and we are thankful for their contributions to our online presence.
+The Admin Panel for the O.C hexagon website was designed and built by [codayomide](https://github.com/codayomide), and we are thankful for their contributions to our online presence.
 
 ## Project Setup
 
@@ -35,7 +35,7 @@ This repository contains the code needed to build and deploy the Admin panel for
 
 ## Contributors
 
-This website was built by [https://github.com/codayomide](codayomide) and supervised by [https://joshytheprogrammer.com/](joshytheprogrammer)
+This website was built by [codayomide](https://github.com/codayomide) and supervised by [joshytheprogrammer](https://joshytheprogrammer.com/)
 
 ## Contributing
 
