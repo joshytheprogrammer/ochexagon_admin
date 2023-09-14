@@ -18,10 +18,6 @@ const AdminPanelLayout = ({ children }) => {
 
   const { status } = useSession();
 
-  if (status === "loading") {
-    return <p>Loading...</p>
-  }
-
   if (status === "unauthenticated") {
     return <NotSignedIn />
   }
