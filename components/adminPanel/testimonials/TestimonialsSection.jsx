@@ -62,7 +62,7 @@ const TestimonialsComponent = () => {
             </thead>
             <tbody className="w-full font-semibold">
               {!loading && testimonials.length === 0 ? (
-                <div>No results found</div>
+                <tr><td>No results found</td></tr>
               ) : (
                 ""
               )}

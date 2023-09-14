@@ -3,13 +3,11 @@
 import Header from "@components/adminPanel/Header";
 import MenuBtn from "@components/adminPanel/MenuBtn";
 import SidePanel from "@components/adminPanel/SidePanel";
-// import NotSignedIn from "@components/login/notSignedIn/NotSignedIn";
-// import { auth } from "@utils/firebase/firebase";
-// import { onAuthStateChanged } from "firebase/auth";
+
 import { useState } from "react";
 
 import { useSession } from 'next-auth/react';
-import { redirect } from "next/navigation";
+import NotSignedIn from "@components/login/notSignedIn/NotSignedIn";
 
 const AdminPanelLayout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,34 +16,11 @@ const AdminPanelLayout = ({ children }) => {
     !isOpen && setIsOpen(true);
   };
 
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // const router = useRouter();
+  const { status } = useSession();
 
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       console.log("You are signed in");
-  //       setIsAuthenticated(true);
-  //     } else {
-  //       // router.push('/')
-  //       console.log("You need to sign in");
-  //       setIsAuthenticated(false);
-  //     }
-  //   });
-  // }, []);
-
-  // const user = auth.currentUser;
-
-  // if (!user) {
-  //   router.push("/");
-  // } else {
-
-  const session = useSession({
-    required: true,
-    onUnauthenticated() {
-      redirect('/');
-    },
-  });
+  if (status === "unauthenticated") {
+    return <NotSignedIn />
+  }
 
   return (
     <div className="w-full">
@@ -63,7 +38,5 @@ const AdminPanelLayout = ({ children }) => {
   );
   // }
 };
-
-AdminPanelLayout.requireAuth = true;
 
 export default AdminPanelLayout;

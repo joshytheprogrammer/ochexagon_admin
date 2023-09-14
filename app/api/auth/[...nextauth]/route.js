@@ -23,15 +23,11 @@ const handler = NextAuth({
           }
           return null;
         } catch (error) {
-          console.error(error);
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
+          console.log(error);
         }
-      },
+      },  
     }),
   ],
-  
 });
 
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };

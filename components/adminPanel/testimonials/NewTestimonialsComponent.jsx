@@ -1,11 +1,9 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import profilePicEmpty from "@public/assets/person-icon.svg";
-import Image from "next/image";
+// import profilePicEmpty from "@public/assets/person-icon.svg";
 import { useRouter } from "next/navigation";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { firestore, storage } from "@utils/firebase/firebase";
+import { firestore } from "@utils/firebase/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import Modal from "react-modal";
 import { useState } from "react";
@@ -51,13 +49,13 @@ const NewTestimonialsComponent = () => {
         dateCreated: currentDate,
         lastModified: currentDate,
       };
-      const profileImageRef = ref(
-        storage,
-        `testimonialProfileImages/${data.profileImage[0].name}`
-      );
-      await uploadBytes(profileImageRef, data.profileImage[0]);
-      const profileImageUrl = await getDownloadURL(profileImageRef);
-      modifiedData.profileImage = profileImageUrl;
+      // const profileImageRef = ref(
+      //   storage,
+      //   `testimonialProfileImages/${data.profileImage[0].name}`
+      // );
+      // await uploadBytes(profileImageRef, data.profileImage[0]);
+      // const profileImageUrl = await getDownloadURL(profileImageRef);
+      // modifiedData.profileImage = profileImageUrl;
 
       await addDoc(collection(firestore, "testimonials"), modifiedData);
       console.log(
@@ -95,14 +93,14 @@ const NewTestimonialsComponent = () => {
             />
           </div>
 
-          <div className="input-container">
+          {/* <div className="input-container">
             <label htmlFor="">Profile Image</label>
             <input
               type="file"
               accept="image*"
               {...register("profileImage", { required: requiredMsg })}
             />
-          </div>
+          </div> */}
 
           <div className="input-container">
             <label htmlFor="">Location</label>
@@ -134,7 +132,7 @@ const NewTestimonialsComponent = () => {
         </form>
 
         <div className="p-6 xl:p-8 border-2 mb-8 lg:mb-4 drop-shadow-2xl rounded-2xl w-[48%] relative text-left h-fit hidden lg:block">
-          {watchedValues.profileImage && (
+          {/* {watchedValues.profileImage && (
             <Image
               src={
                 watchedValues.profileImage[0]
@@ -146,7 +144,7 @@ const NewTestimonialsComponent = () => {
               height={60}
               className="absolute w-[60px] aspect-square -top-[24px] -left-[30px] border-2 rounded-full block bg-darkGray"
             />
-          )}
+          )} */}
 
           <p className="max-w-full lg:text-md xl:text-lg break-words">
             {watchedValues.testimony ||

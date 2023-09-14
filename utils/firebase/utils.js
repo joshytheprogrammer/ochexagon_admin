@@ -1,9 +1,11 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { firestore } from "./firebase";
 
 export async function fetchTestimonials() {
   try {
-    const querySnapshot = await getDocs(collection(firestore, "testimonials"));
+    const colRef = collection(firestore, "testimonials");
+    const q = query(colRef, orderBy("lastModified", "desc"));
+    const querySnapshot = await getDocs(q);
     const testimonials = [];
 
     querySnapshot.forEach((doc) => {
@@ -35,7 +37,9 @@ export async function fetchMessages() {
 
 export async function fetchBlogPosts() {
   try {
-    const querySnapshot = await getDocs(collection(firestore, "blog"));
+    const colRef = collection(firestore, "blog");
+    const q = query(colRef, orderBy("lastModified", "desc"));
+    const querySnapshot = await getDocs(q);
     const blogPosts = [];
 
     querySnapshot.forEach((doc) => {
@@ -76,7 +80,7 @@ export const toDate = (inputDate) => {
     currentDateTime.getMonth() === inputDate.getMonth() &&
     currentDateTime.getDate() === inputDate.getDate()
   ) {
-      return "Today";
+    return "Today";
   } else {
     return `${day}/${month}/${year}`;
   }

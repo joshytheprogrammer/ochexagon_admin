@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 
 const LoginForm = () => {
@@ -14,34 +14,34 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  // const router = useRouter();
-  const [error, setError] = useState(null);
+  const search = useSearchParams();
+  const error = search.get('error');
+  const [errorMsg, setErrorMsg] = useState(null);
   const [isPending, setisPending] = useState(false);
 
   const onSubmit = async (data) => {
-    // setisPending(true);
+    setisPending(true);
 
-    // signInWithEmailAndPassword(auth, data.email, data.password)
-    //   .then((userCredential) => {
-    //     const user = userCredential.user;
-    //     console.log(user.displayName);
-    //     router.push("/dashboard");
-    //     setisPending(false);
-    //   })
-    //   .catch((error) => {
-    //     setisPending(false);
-    //     const errorCode = error.code;
-    //     errorCode === "auth/wrong-password" ||
-    //       ("auth/user-not-found" && setError("Invalid Email or Password"));
-    //   });
-
-    signIn('credentials', {email: data.email, password: data.password, redirect: true, callbackUrl: '/dashboard'})
+    signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: true,
+      callbackUrl: "/dashboard",
+    })
+    .then(() => setisPending(false))
   };
+
+  useEffect(() => {
+    if (error === 'CredentialsSignin') {
+      setErrorMsg('Wrong Login Credentials')
+    }
+
+  }, [error])
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white w-[95%] mo-sm:w-[85%] mo-md:w-[75%] sm:w-[60%] md:w-[50%] lg:w-[45%] xl:w-[25%] flex flex-col items-center rounded-lg px-5 py-9"
+      className="bg-white opacity-90 backdrop-blur-2xl w-[95%] mo-sm:w-[85%] mo-md:w-[75%] sm:w-[60%] md:w-[50%] lg:w-[45%] xl:w-[25%] flex flex-col items-center rounded-lg px-5 py-9"
     >
       <Image
         src="/assets/logo.svg"
@@ -53,9 +53,9 @@ const LoginForm = () => {
 
       <h1 className="text-[25px] font-semibold">Sign in</h1>
 
-      {error && (
+      {errorMsg && (
         <div className="bg-red bg-opacity-5 text-center mt-4 w-full p-1 rounded-[4px] font-semibold border border-red text-red">
-          {error}
+          {errorMsg}
         </div>
       )}
 
@@ -100,7 +100,7 @@ const LoginForm = () => {
             isPending ? "bg-opacity-70" : ""
           }`}
         />
-      </div> 
+      </div>
     </form>
   );
 };
