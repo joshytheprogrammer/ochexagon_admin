@@ -1,6 +1,6 @@
 "use client";
 
-import { BiSolidDashboard } from "react-icons/bi";
+import { BiSolidDashboard, BiLogOut } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -98,7 +98,7 @@ const SidePanel = ({ isOpen, setIsOpen }) => {
           onClick={handleSignOut}
           className="text-white w-fit flex items-center mt-6 ml-4"
         >
-          <BiSolidDashboard className="text-[25px] mr-2" />
+          <BiLogOut className="text-[25px] mr-2" />
           <span>Log Out</span>
         </button>
       </div>
