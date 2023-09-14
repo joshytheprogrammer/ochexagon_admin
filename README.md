@@ -1,34 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ochexagon Admin
 
-## Getting Started
+Welcome to the official repository for the Admin Panel for the [https://ochexagon.com](O.C Hexagon website)
 
-First, run the development server:
+## About Ochexagon
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Ochexagon is dedicated to providing high-quality industrial solutions with a focus on innovation and service. For years, we have been at the forefront of delivering inventive methods and cutting-edge approaches to meet the needs of industries. Our commitment to maximizing service quality contributes to closing the gap of unemployment.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Our Services
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Explore our comprehensive range of services:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- ETP Water Treatment Chemicals
+- Soda Ash Replacement Powder
+- Industrial Chemicals
+- FIBC Bags for Industrial Chemicals
+- Aluminium Sulphate
+- Caustic Soda Flakes
+- And More...
 
-## Learn More
+## Why Choose Ochexagon
 
-To learn more about Next.js, take a look at the following resources:
+1. **Expertise:** Decades of industry knowledge ensure tailored solutions.
+2. **Innovation:** Pioneering approaches for optimal efficiency.
+3. **Service:** Exceeding expectations with a "can do" attitude.
+4. **Sustainability:** Environmental care through effective solutions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Website Information
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The ochexagon website was designed and built by         , and we are thankful for their contributions to our online presence.
 
-## Deploy on Vercel
+## Project Setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This repository contains the code needed to build and deploy the Admin panel for the O.C Hexagon website.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributors
+
+This website was built by [https://github.com/codayomide](codayomide) and supervised by [https://joshytheprogrammer.com/](joshytheprogrammer)
+
+## Contributing
+
+We welcome contributions from those who share our passion. To get involved in the Ochexagon Admin project or our initiatives, feel free to submit pull requests or contact us through our official channels.
+
+## Contact Us
+
+- Website: [https://ochexagon.com](https://ochexagon.com)
+- Email: info@ochexagon.com
+- Phone: +234 802 224 1271
+
+Thank you for being a part of Ochexagon. Together, we can redefine industries and make a positive impact!
